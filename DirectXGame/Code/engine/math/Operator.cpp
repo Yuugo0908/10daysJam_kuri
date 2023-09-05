@@ -1,6 +1,171 @@
 #include "Operator.h"
 
-// XMFLOAT3
+#pragma region XMFLOAT2
+const XMFLOAT2 operator+(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	XMFLOAT2 w = {};
+	w.x = v1.x + v2.x;
+	w.y = v1.y + v2.y;
+	return w;
+}
+const XMFLOAT2 operator-(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	XMFLOAT2 w = {};
+	w.x = v1.x - v2.x;
+	w.y = v1.y - v2.y;
+	return w;
+}
+const XMFLOAT2 operator*(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	XMFLOAT2 w = {};
+	w.x = v1.x * v2.x;
+	w.y = v1.y * v2.y;
+	return w;
+}
+const XMFLOAT2 operator/(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	XMFLOAT2 w = {};
+	w.x = v1.x / v2.x;
+	w.y = v1.y / v2.y;
+	return w;
+}
+
+const XMFLOAT2 operator+(const XMFLOAT2& v, float s)
+{
+	XMFLOAT2 w = {};
+	w.x = v.x + s;
+	w.y = v.y + s;
+	return w;
+}
+const XMFLOAT2 operator-(const XMFLOAT2& v, float s)
+{
+	XMFLOAT2 w = {};
+	w.x = v.x - s;
+	w.y = v.y - s;
+	return w;
+}
+const XMFLOAT2 operator*(const XMFLOAT2& v, float s)
+{
+	XMFLOAT2 w = {};
+	w.x = v.x * s;
+	w.y = v.y * s;
+	return w;
+}
+const XMFLOAT2 operator/(const XMFLOAT2& v, float s)
+{
+	XMFLOAT2 w = {};
+	w.x = v.x / s;
+	w.y = v.y / s;
+	return w;
+}
+
+const XMFLOAT2 operator+=(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	XMFLOAT2 w = {};
+	w.x = v1.x + v2.x;
+	w.y = v1.y + v2.y;
+	return w;
+}
+const XMFLOAT2 operator-=(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	XMFLOAT2 w = {};
+	w.x = v1.x - v2.x;
+	w.y = v1.y - v2.y;
+	return w;
+}
+const XMFLOAT2 operator*=(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	XMFLOAT2 w = {};
+	w.x = v1.x * v2.x;
+	w.y = v1.y * v2.y;
+	return w;
+}
+const XMFLOAT2 operator/=(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	XMFLOAT2 w = {};
+	w.x = v1.x / v2.x;
+	w.y = v1.y / v2.y;
+	return w;
+}
+
+const XMFLOAT2 operator+=(const XMFLOAT2& v, float s)
+{
+	XMFLOAT2 w = {};
+	w.x = v.x + s;
+	w.y = v.y + s;
+	return w;
+}
+const XMFLOAT2 operator-=(const XMFLOAT2& v, float s)
+{
+	XMFLOAT2 w = {};
+	w.x = v.x - s;
+	w.y = v.y - s;
+	return w;
+}
+const XMFLOAT2 operator*=(const XMFLOAT2& v, float s)
+{
+	XMFLOAT2 w = {};
+	w.x = v.x * s;
+	w.y = v.y * s;
+	return w;
+}
+const XMFLOAT2 operator/=(const XMFLOAT2& v, float s)
+{
+	XMFLOAT2 w = {};
+	w.x = v.x / s;
+	w.y = v.y / s;
+	return w;
+}
+
+const bool operator<(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	if (v1.x < v2.x && v1.y < v2.y)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+const bool operator>(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	if (v1.x > v2.x && v1.y > v2.y)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+const bool operator==(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	if (v1.x == v2.x && v1.y == v2.y)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+const bool operator!=(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	if (v1.x != v2.x || v1.y != v2.y)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+#pragma endregion
+
+#pragma region XMFLOAT3
 const XMFLOAT3 operator+(const XMFLOAT3& v1, const XMFLOAT3& v2)
 {
 	XMFLOAT3 w = {};
@@ -155,8 +320,9 @@ const bool operator!=(const XMFLOAT3& v1, const XMFLOAT3& v2)
 		return false;
 	}
 }
+#pragma endregion
 
-// XMFLOAT4
+#pragma region XMFLOAT4
 const XMFLOAT4 operator+(const XMFLOAT4& v1, const XMFLOAT4& v2)
 {
 	XMFLOAT4 w = {};
@@ -230,3 +396,4 @@ const XMFLOAT4 operator/(const XMFLOAT4& v, float s)
 	w.w = v.w / s;
 	return w;
 }
+#pragma endregion

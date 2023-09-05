@@ -80,17 +80,35 @@ void Mouse::CursorLimit()
 	hwnd = winApp->GetHwnd();
 	GetClientRect(hwnd, &rcClient);
 
-	ptClientUL.x = rcClient.left + 100;
-	ptClientUL.y = rcClient.top + 100;
-	ptClientLR.x = rcClient.right - 100;
-	ptClientLR.y = rcClient.bottom - 100;
+	ptClientUL.x = rcClient.left;
+	ptClientUL.y = rcClient.top;
+	ptClientLR.x = rcClient.right;
+	ptClientLR.y = rcClient.bottom;
 	ClientToScreen(hwnd, &ptClientUL);
 	ClientToScreen(hwnd, &ptClientLR);
 
-	SetRect(&rcClient, ptClientUL.x, ptClientUL.y,
-		ptClientLR.x, ptClientLR.y);
+	SetRect(&rcClient, ptClientUL.x, ptClientUL.y, ptClientLR.x, ptClientLR.y);
 
 	ClipCursor(&rcClient);
+}
+
+XMFLOAT2 Mouse::GetMousePos()
+{
+	//マウス座標取得
+	GetCursorPos(&po);
+
+	//hwnd = winApp->GetHwnd();
+	//GetClientRect(hwnd, &rcClient);
+
+	//ptClientUL.x = rcClient.left;
+	//ptClientUL.y = rcClient.top;
+	//ptClientLR.x = rcClient.right;
+	//ptClientLR.y = rcClient.bottom;
+	//ClientToScreen(hwnd, &ptClientUL);
+	//ClientToScreen(hwnd, &ptClientLR);
+
+	XMFLOAT2 cursorPos = { (float)po.x - ptClientUL.x, (float)po.y - ptClientUL.y };
+	return cursorPos;
 }
 
 bool Mouse::PushMouseLeft()
@@ -162,6 +180,42 @@ bool Mouse::TriggerMouseRight()
 	}
 
 	// トリガーでない
+	return false;
+}
+
+bool Mouse::ReleaseMouseLeft()
+{
+	// 前回が1で、今回が1でなければリリース
+	if (mouseStatePre.rgbButtons[0] && !mouseState.rgbButtons[0])
+	{
+		return true;
+	}
+
+	// リリースでない
+	return false;
+}
+
+bool Mouse::ReleaseMouseMiddle()
+{
+	// 前回が1で、今回が1でなければリリース
+	if (mouseStatePre.rgbButtons[2] && !mouseState.rgbButtons[2])
+	{
+		return true;
+	}
+
+	// リリースでない
+	return false;
+}
+
+bool Mouse::ReleaseMouseRight()
+{
+	// 前回が1で、今回が1でなければリリース
+	if (mouseStatePre.rgbButtons[1] && !mouseState.rgbButtons[1])
+	{
+		return true;
+	}
+
+	// リリースでない
 	return false;
 }
 

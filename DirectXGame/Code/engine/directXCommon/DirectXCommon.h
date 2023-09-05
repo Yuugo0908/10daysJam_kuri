@@ -45,6 +45,8 @@ public: // メンバ関数
 	ID3D12Device* GetDevice() { return device.Get(); }
 	// 描画コマンドリストの取得
 	ID3D12GraphicsCommandList* GetCommandList() { return commandList.Get(); }
+	// ウィンドウハンドルの取得
+	HWND GetHwnd() { return hwnd; }
 
 private: // メンバ変数
 	// ウィンドウズアプリケーション管理
@@ -63,6 +65,7 @@ private: // メンバ変数
 	ComPtr<ID3D12DescriptorHeap> dsvHeap;
 	ComPtr<ID3D12Fence> fence;
 	UINT64 fenceVal = 0;
+	HWND hwnd = nullptr; // ウィンドウハンドル
 
 	//imgui関連
 	ComPtr<ID3D12DescriptorHeap> imguiHeap; // ヒープ保持用

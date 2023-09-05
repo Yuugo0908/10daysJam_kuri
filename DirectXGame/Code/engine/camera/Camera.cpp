@@ -115,58 +115,7 @@ void Camera::CameraMoveEyeVector(const XMVECTOR& move)
 
 void Camera::Update()
 {
-	angleY = 0.0f;
-	dirty = false;
-
-	if (saveEye.y > eyeMax)
-	{
-		saveEye.y = eyeMax;
-	}
-	if (saveEye.y < eyeMin)
-	{
-		saveEye.y = eyeMin;
-	}
-
-	// マウスのカーソル移動でカメラの回転
-	if (mouse->GetMouseMove().MouseX != 0)
-	{
-		angleY = mouse->GetMouseMove().MouseX * mouseSensitivity;
-		dirty = true;
-	}
-
-	if (mouse->GetMouseMove().MouseY != 0)
-	{
-		saveEye.y += mouse->GetMouseMove().MouseY * mouseSensitivity;
-		dirty = true;
-	}
-
-	// コントローラーが接続されているか
-	if (controller->Detection())
-	{
-		// 右スティック操作でカメラを回転
-		if (controller->GetPadState(Controller::State::RIGHT_L_STICK, Controller::Type::NONE))
-		{
-			angleY -= XM_PI * controllerSensitivity;
-			dirty = true;
-		}
-		else if (controller->GetPadState(Controller::State::RIGHT_R_STICK, Controller::Type::NONE))
-		{
-			angleY += XM_PI * controllerSensitivity;
-			dirty = true;
-		}
-
-		if (controller->GetPadState(Controller::State::RIGHT_U_STICK, Controller::Type::NONE))
-		{
-			saveEye.y -= XM_PI * controllerSensitivity;
-			dirty = true;
-		}
-		else if (controller->GetPadState(Controller::State::RIGHT_D_STICK, Controller::Type::NONE))
-		{
-			saveEye.y += XM_PI * controllerSensitivity;
-			dirty = true;
-		}
-	}
-
+	// CameraMouseMove();
 	if (dirty || viewDirty)
 	{
 		// 追加回転分の回転行列を生成
@@ -339,75 +288,31 @@ XMFLOAT3 Camera::CameraTrack(XMFLOAT3 pos)
 	return Track;
 }
 
-void Camera::TitleSceneCameraRotation()
+void Camera::CameraMouseMove()
 {
-	if (!rotationFlag)
+	angleY = 0.0f;
+	dirty = false;
+
+	if (saveEye.y > eyeMax)
 	{
-		eye = { 0, 10.0f, -100.0f };
-		target = { 0, 0, 0 };
-		saveEye = eye;
-		angleY = 0.0f;
-
-		// ビュー行列
-		matView = DirectX::XMMatrixIdentity();
-		// 射影行列
-		matProjection = DirectX::XMMatrixIdentity();
-		// ビュー射影行列
-		matViewProjection = DirectX::XMMatrixIdentity();
-		// 回転行列
-		matRot = DirectX::XMMatrixIdentity();
-
-		//ビュー行列の計算
-		UpdateViewMatrix();
-		// 射影行列の計算
-		UpdateProjectionMatrix();
-		// ビュープロジェクションの合成
-		matViewProjection = matView * matProjection;
-
-		rotationFlag = true;
+		saveEye.y = eyeMax;
+	}
+	if (saveEye.y < eyeMin)
+	{
+		saveEye.y = eyeMin;
 	}
 
-	angleY = 0.01f;
-	dirty = true;
-
-	if (dirty || viewDirty)
+	// マウスのカーソル移動でカメラの回転
+	if (mouse->GetMouseMove().MouseX != 0)
 	{
-		// 追加回転分の回転行列を生成
-		XMMATRIX matRotNew = XMMatrixIdentity();
-		matRotNew *= XMMatrixRotationY(angleY / 10.0f);
-		// 累積の回転行列を合成
-		matRot = matRotNew * matRot;
-
-		// 注視点から視点へのベクトルと、上方向ベクトル
-		vTargetEye = { saveEye.x, saveEye.y, saveEye.z, 1.0f };
-
-		// ベクトルを回転
-		vTargetEye = XMVector3Transform(vTargetEye, matRot);
-
-		// 注視点からずらした位置に視点座標を決定
-		const XMFLOAT3& target = GetTarget();
-		SetEye({ target.x + vTargetEye.m128_f32[0], target.y + vTargetEye.m128_f32[1], target.z + vTargetEye.m128_f32[2] });
+		angleY = mouse->GetMouseMove().MouseX * mouseSensitivity;
+		dirty = true;
 	}
 
-	if (viewDirty || projectionDirty)
+	if (mouse->GetMouseMove().MouseY != 0)
 	{
-		// 再計算必要なら
-		if (viewDirty)
-		{
-			// ビュー行列更新
-			UpdateViewMatrix();
-			viewDirty = false;
-		}
-
-		// 再計算必要なら
-		if (projectionDirty)
-		{
-			// ビュー行列更新
-			UpdateProjectionMatrix();
-			projectionDirty = false;
-		}
-		// ビュープロジェクションの合成
-		matViewProjection = matView * matProjection;
+		saveEye.y += mouse->GetMouseMove().MouseY * mouseSensitivity;
+		dirty = true;
 	}
 }
 

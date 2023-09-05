@@ -43,6 +43,10 @@ private: // メンバ変数
 	Camera* camera = Camera::GetInstance();
 	Light* light = Light::GetInstance();
 
+	// 画像
+	Image2d* Space = nullptr;
+
 	bool isClear = false;
 	bool isGameOver = false;
+	bool isDrag = false;
 };

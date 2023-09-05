@@ -5,6 +5,29 @@ using namespace DirectX;
 
 //2項演算子オーバーロード
 //※いろんな引数(引数の型と順序)のパターンに対応するため、以下のように準備している
+const XMFLOAT2 operator+(const XMFLOAT2& v1, const XMFLOAT2& v2);
+const XMFLOAT2 operator-(const XMFLOAT2& v1, const XMFLOAT2& v2);
+const XMFLOAT2 operator*(const XMFLOAT2& v1, const XMFLOAT2& v2);
+const XMFLOAT2 operator/(const XMFLOAT2& v1, const XMFLOAT2& v2);
+const XMFLOAT2 operator+(const XMFLOAT2& v, float s);
+const XMFLOAT2 operator-(const XMFLOAT2& v, float s);
+const XMFLOAT2 operator*(const XMFLOAT2& v, float s);
+const XMFLOAT2 operator/(const XMFLOAT2& v, float s);
+
+const XMFLOAT2 operator+=(const XMFLOAT2& v1, const XMFLOAT2& v2);
+const XMFLOAT2 operator-=(const XMFLOAT2& v1, const XMFLOAT2& v2);
+const XMFLOAT2 operator*=(const XMFLOAT2& v1, const XMFLOAT2& v2);
+const XMFLOAT2 operator/=(const XMFLOAT2& v1, const XMFLOAT2& v2);
+const XMFLOAT2 operator+=(const XMFLOAT2& v, float s);
+const XMFLOAT2 operator-=(const XMFLOAT2& v, float s);
+const XMFLOAT2 operator*=(const XMFLOAT2& v, float s);
+const XMFLOAT2 operator/=(const XMFLOAT2& v, float s);
+
+const bool operator<(const XMFLOAT2& v1, const XMFLOAT2& v2);
+const bool operator>(const XMFLOAT2& v1, const XMFLOAT2& v2);
+const bool operator==(const XMFLOAT2& v1, const XMFLOAT2& v2);
+const bool operator!=(const XMFLOAT2& v1, const XMFLOAT2& v2);
+
 const XMFLOAT3 operator+(const XMFLOAT3& v1, const XMFLOAT3& v2);
 const XMFLOAT3 operator-(const XMFLOAT3& v1, const XMFLOAT3& v2);
 const XMFLOAT3 operator*(const XMFLOAT3& v1, const XMFLOAT3& v2);

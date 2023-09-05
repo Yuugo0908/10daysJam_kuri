@@ -29,7 +29,6 @@ public: // サブクラス
 	{
 		debugTextNum,
 		titleNum, backNum, GameClearNum, GameOverNum,
-		HPTextNum, HPBarNum, HPGaugeNum,
 		wasdNum, spaceNum, mouseNum, mouseLeftNum, mouseRightNum
 	};
 
@@ -82,6 +81,8 @@ public: // メンバ関数
 	void SetRotation(float rotation);
 	// 座標の設定
 	void SetPosition(XMFLOAT2 position);
+	// 中心座標の設定
+	void SetCenterPos(XMFLOAT2 position, XMFLOAT2 size);
 	// サイズの設定
 	void SetSize(XMFLOAT2 size);
 	// 色の設定
@@ -98,6 +99,11 @@ public: // メンバ関数
 	void Draw();
 	// 頂点データ転送
 	void TransferVertices();
+
+	// 座標取得
+	const XMFLOAT2& GetPosition() { return position; }
+	// サイズ取得
+	const XMFLOAT2& GetSize() { return size; }
 
 protected: // メンバ変数
 	// 頂点バッファ

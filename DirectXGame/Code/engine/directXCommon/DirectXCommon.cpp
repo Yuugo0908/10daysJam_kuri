@@ -32,6 +32,7 @@ void DirectXCommon::Initialize(WinApp* winApp)
 	assert(winApp);
 
 	this->winApp = winApp;
+	hwnd = winApp->GetHwnd();
 
 	// FPSŒÅ’è‰Šú‰»
 	InitializeFixFPS();

@@ -462,6 +462,13 @@ void Image2d::SetPosition(XMFLOAT2 position)
 	TransferVertices();
 }
 
+void Image2d::SetCenterPos(XMFLOAT2 position, XMFLOAT2 size)
+{
+	this->position = position - (size / 2.0f);
+	// 頂点バッファへのデータ転送
+	TransferVertices();
+}
+
 void Image2d::SetSize(XMFLOAT2 size)
 {
 	this->size = size;

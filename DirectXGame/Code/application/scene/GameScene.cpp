@@ -9,7 +9,9 @@ void GameScene::Initialize()
 	Object3d::SetCamera(camera);
 
 	// 画像の生成
-
+	Space = Image2d::Create(Image2d::ImgNumber::spaceNum, { 0.0f, 0.0f });
+	Space->SetPosition({ 0.0f, 0.0f });
+	Space->SetSize({ 128.0f, 36.0f });
 	// パーティクル生成
 
 	// ライトの生成
@@ -27,6 +29,9 @@ void GameScene::Finalize()
 
 void GameScene::Update()
 {
+	// マウスの移動範囲の制限
+	mouse->CursorLimit();
+
 #pragma region フェードアウト
 	if (!isClear && !isGameOver)
 	{
@@ -48,6 +53,30 @@ void GameScene::Update()
 		}
 	}
 #pragma endregion
+
+	XMFLOAT2 minPos = Space->GetPosition();
+	XMFLOAT2 maxPos = Space->GetPosition() + Space->GetSize();
+
+	// 画像がドラッグ状態なら
+	if (isDrag)
+	{
+		// 画像の中心をマウス座標にする
+		Space->SetCenterPos(mouse->GetMousePos(), Space->GetSize());
+	}
+
+	//マウス左が画像内で押されているか
+	if (mouse->TriggerMouseLeft() && minPos < mouse->GetMousePos() && mouse->GetMousePos() < maxPos)
+	{
+		isDrag = true;
+	}
+	// ドラッグした状態で離したら
+	if (mouse->ReleaseMouseLeft() && isDrag)
+	{
+		isDrag = false;
+	}
+
+	// マウスの相対座標を表示
+	DebugText::GetInstance()->Print(10.0f, 10.0f, 2.0f, "(%d, %d)", (int)mouse->GetMousePos().x, (int)mouse->GetMousePos().y);
 }
 
 void GameScene::Draw()
@@ -88,6 +117,8 @@ void GameScene::Draw()
 #pragma region 前景画像描画
 	// 前景画像描画前処理
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
+
+	Space->Draw();
 
 	// フェードの描画
 	FadeScene::GetInstance()->Draw();

@@ -4,6 +4,7 @@
 
 #define DIRECTINPUT_VERSION     0x0800          // DirectInputのバージョン指定
 #include <dinput.h>
+#include "Operator.h"
 #include "WinApp.h"
 class Mouse
 {
@@ -42,6 +43,9 @@ public: // メンバ関数
 	// マウスの移動制限
 	void CursorLimit();
 
+	// マウスの相対座標の取得
+	XMFLOAT2 GetMousePos();
+
 	// キーの左クリックをチェック
 	bool PushMouseLeft();
 
@@ -59,6 +63,15 @@ public: // メンバ関数
 
 	// キーの右クリックトリガーをチェック
 	bool TriggerMouseRight();
+
+	// キーの左クリックリリースをチェック
+	bool ReleaseMouseLeft();
+
+	// キーの中ボタンリリースをチェック
+	bool ReleaseMouseMiddle();
+
+	// キーの右クリックリリースをチェック
+	bool ReleaseMouseRight();
 
 	// マウス移動量を取得
 	MouseMove GetMouseMove();
@@ -78,5 +91,8 @@ private: // メンバ変数
 	RECT rcClient;
 	POINT ptClientUL;
 	POINT ptClientLR;
+
+	// モニター左上からの絶対座標(マウス)
+	POINT po;
 };
 

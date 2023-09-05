@@ -23,7 +23,6 @@ void TitleScene::Finalize()
 
 void TitleScene::Update()
 {
-	camera->TitleSceneCameraRotation();
 	if (!changeFlag)
 	{
 		FadeScene::GetInstance()->FadeOut(1.0f);
