@@ -27,14 +27,6 @@ void MyGame::Initialize()
 		assert(0);
 	}
 	// チュートリアル用画像の読み込み
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::wasdNum, "wasdKey"))
-	{
-		assert(0);
-	}
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::spaceNum, "spaceKey"))
-	{
-		assert(0);
-	}
 	if (!Image2d::LoadTexture(Image2d::ImgNumber::mouseNum, "mouse"))
 	{
 		assert(0);
@@ -44,6 +36,23 @@ void MyGame::Initialize()
 		assert(0);
 	}
 	if (!Image2d::LoadTexture(Image2d::ImgNumber::mouseRightNum, "mouse_right"))
+	{
+		assert(0);
+	}
+	// 寿司画像の読み込み
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::shari, "shari"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::sushi_geta, "sushi_geta"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::maguro, "maguro"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::maguro_neta, "maguro_neta"))
 	{
 		assert(0);
 	}

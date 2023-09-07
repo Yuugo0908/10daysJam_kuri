@@ -250,6 +250,9 @@
     <ClCompile Include="Code\application\scene\SceneFactory.cpp">
       <Filter>ソースファイル\application\scene</Filter>
     </ClCompile>
+    <ClCompile Include="Code\application\game\Sushi.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\application\scene\FadeScene.h">
@@ -347,6 +350,9 @@
     </ClInclude>
     <ClInclude Include="Code\SafeDelete.h">
       <Filter>ヘッダーファイル\application</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\application\game\Sushi.h">
+      <Filter>ヘッダーファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

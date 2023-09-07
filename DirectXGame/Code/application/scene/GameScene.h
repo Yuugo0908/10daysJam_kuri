@@ -19,6 +19,7 @@
 #include "BaseScene.h"
 #include "SafeDelete.h"
 #include "FadeScene.h"
+#include "Sushi.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -44,8 +45,7 @@ private: // メンバ変数
 	Light* light = Light::GetInstance();
 
 	// 画像
-	std::list<Image2d*> imageList;
-	Image2d* spaceImg = nullptr;
+	Sushi* sushi = Sushi::GetInstance();
 	Image2d* mouseImg = nullptr;
 	Image2d* mouseLeftImg = nullptr;
 	Image2d* mouseRightImg = nullptr;

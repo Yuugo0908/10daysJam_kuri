@@ -25,11 +25,14 @@ public: // サブクラス
 		XMFLOAT4 color; // 色 (RGBA)
 		XMMATRIX mat; // ３Ｄ変換行列
 	};
+	// 管理番号
 	enum ImgNumber
 	{
 		debugTextNum,
 		titleNum, backNum, GameClearNum, GameOverNum,
-		wasdNum, spaceNum, mouseNum, mouseLeftNum, mouseRightNum
+		mouseNum, mouseLeftNum, mouseRightNum,
+		shari,sushi_geta,
+		maguro, maguro_neta
 	};
 
 public: // 静的メンバ関数
@@ -105,6 +108,10 @@ public: // メンバ関数
 	// サイズ取得
 	const XMFLOAT2& GetSize() { return size; }
 
+	// ドラッグ設定
+	void SetIsDrag(bool isDrag) { this->isDrag = isDrag; }
+	// ドラッグ取得
+	const bool& GetIsDrag() { return isDrag; }
 protected: // メンバ変数
 	// 頂点バッファ
 	ComPtr<ID3D12Resource> vertBuffer;
@@ -134,4 +141,6 @@ protected: // メンバ変数
 	XMFLOAT2 texBase = { 0, 0 };
 	// テクスチャ幅、高さ
 	XMFLOAT2 texSize = { 100.0f, 100.0f };
+	// マウスで掴んでいるか
+	bool isDrag = false;
 };

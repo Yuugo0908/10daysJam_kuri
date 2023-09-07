@@ -200,6 +200,7 @@
     <ClCompile Include="Code\engine\scene\SceneManager.cpp" />
     <ClCompile Include="Code\engine\winApp\WinApp.cpp" />
     <ClCompile Include="Code\main.cpp" />
+    <ClCompile Include="Code\application\game\Sushi.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\application\scene\FadeScene.h" />
@@ -234,6 +235,7 @@
     <ClInclude Include="Code\engine\scene\SceneManager.h" />
     <ClInclude Include="Code\engine\winApp\WinApp.h" />
     <ClInclude Include="Code\SafeDelete.h" />
+    <ClInclude Include="Code\application\game\Sushi.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
