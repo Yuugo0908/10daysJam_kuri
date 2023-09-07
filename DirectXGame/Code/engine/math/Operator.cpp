@@ -141,6 +141,30 @@ const bool operator>(const XMFLOAT2& v1, const XMFLOAT2& v2)
 	}
 }
 
+const bool operator<=(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	if (v1.x <= v2.x && v1.y <= v2.y)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+const bool operator>=(const XMFLOAT2& v1, const XMFLOAT2& v2)
+{
+	if (v1.x >= v2.x && v1.y >= v2.y)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 const bool operator==(const XMFLOAT2& v1, const XMFLOAT2& v2)
 {
 	if (v1.x == v2.x && v1.y == v2.y)
@@ -296,6 +320,54 @@ const XMFLOAT3 operator/=(const XMFLOAT3& v, float s)
 	w.y = v.y / s;
 	w.z = v.z / s;
 	return w;
+}
+
+const bool operator<(const XMFLOAT3& v1, const XMFLOAT3& v2)
+{
+	if (v1.x < v2.x && v1.y < v2.y)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+const bool operator>(const XMFLOAT3& v1, const XMFLOAT3& v2)
+{
+	if (v1.x > v2.x && v1.y > v2.y)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+const bool operator<=(const XMFLOAT3& v1, const XMFLOAT3& v2)
+{
+	if (v1.x <= v2.x && v1.y <= v2.y)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+const bool operator>=(const XMFLOAT3& v1, const XMFLOAT3& v2)
+{
+	if (v1.x >= v2.x && v1.y >= v2.y)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 const bool operator==(const XMFLOAT3& v1, const XMFLOAT3& v2)

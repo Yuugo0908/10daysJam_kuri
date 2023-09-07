@@ -44,7 +44,11 @@ private: // メンバ変数
 	Light* light = Light::GetInstance();
 
 	// 画像
-	Image2d* Space = nullptr;
+	std::list<Image2d*> imageList;
+	Image2d* spaceImg = nullptr;
+	Image2d* mouseImg = nullptr;
+	Image2d* mouseLeftImg = nullptr;
+	Image2d* mouseRightImg = nullptr;
 
 	bool isClear = false;
 	bool isGameOver = false;
