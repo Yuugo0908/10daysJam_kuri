@@ -20,6 +20,7 @@
 #include "SafeDelete.h"
 #include "FadeScene.h"
 #include "Sushi.h"
+#include "Rice.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -48,6 +49,7 @@ private: // メンバ変数
 
 	// 画像
 	Sushi* sushi = Sushi::GetInstance();
+	Rice* rice = Rice::GetInstance();
 	Image2d* mouseImg = nullptr;
 	Image2d* mouseLeftImg = nullptr;
 	Image2d* mouseRightImg = nullptr;
@@ -55,4 +57,6 @@ private: // メンバ変数
 	bool isClear = false;
 	bool isGameOver = false;
 	bool isDrag = false;
+
+	bool sceneChange = false;
 };

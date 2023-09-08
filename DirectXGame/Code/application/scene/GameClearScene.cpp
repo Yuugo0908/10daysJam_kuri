@@ -4,8 +4,8 @@
 void GameClearScene::Initialize()
 {
 	// ƒQ[ƒ€ƒNƒŠƒA‰æ‘œ¶¬
-	GameClear = Image2d::Create(Image2d::ImgNumber::GameClearNum, { 0.0f,0.0f });
-	GameClear->SetSize({ 1280.0f,720.0f });
+	result = Image2d::Create(Image2d::ImgNumber::resultNum, { 0.0f,0.0f });
+	result->SetSize({ 1280.0f,720.0f });
 	// ”wŒi‰æ‘œ¶¬
 	backGround = Image2d::Create(Image2d::ImgNumber::backNum, { 0.0f,0.0f });
 	backGround->SetSize({ 1280.0f,720.0f });
@@ -14,7 +14,7 @@ void GameClearScene::Initialize()
 
 void GameClearScene::Finalize()
 {
-	safe_delete(GameClear);
+	safe_delete(result);
 	safe_delete(backGround);
 }
 
@@ -71,7 +71,7 @@ void GameClearScene::Draw()
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
 
 	// ‘OŒi‰æ‘œ‚Ì•`‰æ
-	GameClear->Draw();
+	result->Draw();
 
 	// ƒtƒF[ƒh‚Ì•`‰æ
 	FadeScene::GetInstance()->Draw();

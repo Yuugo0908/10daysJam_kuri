@@ -28,6 +28,14 @@ public: // ƒƒ“ƒoŠÖ”
 	void Draw();
 
 private: // ƒƒ“ƒo•Ï”
+	Mouse* mouse = Mouse::GetInstance();
+
+	// ‰æ‘œ
+	Image2d* suihan_open = nullptr;
+	Image2d* suihan_close = nullptr;
+	Image2d* watar = nullptr;
+	Image2d* rice = nullptr;
+	Image2d* wasabi = nullptr;
 
 };
 

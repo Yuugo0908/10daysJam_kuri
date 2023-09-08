@@ -34,7 +34,7 @@ private: // ƒƒ“ƒo•Ï”
 	Camera* camera = Camera::GetInstance();
 
 	// ‰æ‘œ
-	Image2d* GameClear = nullptr;
+	Image2d* result = nullptr;
 	Image2d* backGround = nullptr;
 
 	float alpha = 1.0f;

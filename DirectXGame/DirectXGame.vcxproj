@@ -172,7 +172,6 @@
   <ItemGroup>
     <ClCompile Include="Code\application\scene\FadeScene.cpp" />
     <ClCompile Include="Code\application\scene\GameClearScene.cpp" />
-    <ClCompile Include="Code\application\scene\GameOverScene.cpp" />
     <ClCompile Include="Code\application\scene\GameScene.cpp" />
     <ClCompile Include="Code\application\scene\MyGame.cpp" />
     <ClCompile Include="Code\application\scene\SceneFactory.cpp" />
@@ -206,7 +205,6 @@
   <ItemGroup>
     <ClInclude Include="Code\application\scene\FadeScene.h" />
     <ClInclude Include="Code\application\scene\GameClearScene.h" />
-    <ClInclude Include="Code\application\scene\GameOverScene.h" />
     <ClInclude Include="Code\application\scene\GameScene.h" />
     <ClInclude Include="Code\application\scene\MyGame.h" />
     <ClInclude Include="Code\application\scene\SceneFactory.h" />

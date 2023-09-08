@@ -16,13 +16,8 @@ void MyGame::Initialize()
 	{
 		assert(0);
 	}
-	// ゲームクリア画像読み込み
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::GameClearNum, "GameClear"))
-	{
-		assert(0);
-	}
-	// ゲームオーバー画像読み込み
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::GameOverNum, "GameOver"))
+	// リザルト画像読み込み
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::resultNum, "result"))
 	{
 		assert(0);
 	}

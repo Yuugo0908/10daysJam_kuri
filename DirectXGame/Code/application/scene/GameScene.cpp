@@ -61,8 +61,22 @@ void GameScene::Update()
 	}
 #pragma endregion
 
-	sushi->Update();
+#pragma region シーン切り替え
+	if (keyboard->TriggerKey(DIK_SPACE))
+	{
+		if (sceneChange)
+		{
+			sceneChange = false;
+		}
+		else
+		{
+			sceneChange = true;
+		}
+	}
+#pragma endregion
 
+	sushi->Update();
+	rice->Update();
 }
 
 void GameScene::Draw()
@@ -114,7 +128,14 @@ void GameScene::Draw()
 	// 前景画像描画前処理
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
 
-	sushi->Draw();
+	if (sceneChange)
+	{
+		rice->Draw();
+	}
+	else
+	{
+		sushi->Draw();
+	}
 
 	// フェードの描画
 	FadeScene::GetInstance()->Draw();

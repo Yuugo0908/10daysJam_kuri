@@ -169,9 +169,6 @@
     <ClCompile Include="Code\application\scene\GameClearScene.cpp">
       <Filter>ソースファイル\application\scene</Filter>
     </ClCompile>
-    <ClCompile Include="Code\application\scene\GameOverScene.cpp">
-      <Filter>ソースファイル\application\scene</Filter>
-    </ClCompile>
     <ClCompile Include="Code\application\scene\GameScene.cpp">
       <Filter>ソースファイル\application\scene</Filter>
     </ClCompile>
@@ -262,9 +259,6 @@
       <Filter>ヘッダーファイル\application\scene</Filter>
     </ClInclude>
     <ClInclude Include="Code\application\scene\GameClearScene.h">
-      <Filter>ヘッダーファイル\application\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\application\scene\GameOverScene.h">
       <Filter>ヘッダーファイル\application\scene</Filter>
     </ClInclude>
     <ClInclude Include="Code\application\scene\GameScene.h">
