@@ -76,7 +76,6 @@ Sushi::~Sushi()
 Sushi* Sushi::GetInstance()
 {
 	static Sushi instance;
-
 	return &instance;
 }
 

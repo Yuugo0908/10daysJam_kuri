@@ -253,6 +253,9 @@
     <ClCompile Include="Code\application\game\Sushi.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Code\application\game\Rice.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\application\scene\FadeScene.h">
@@ -352,6 +355,9 @@
       <Filter>ヘッダーファイル\application</Filter>
     </ClInclude>
     <ClInclude Include="Code\application\game\Sushi.h">
+      <Filter>ヘッダーファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\application\game\Rice.h">
       <Filter>ヘッダーファイル</Filter>
     </ClInclude>
   </ItemGroup>

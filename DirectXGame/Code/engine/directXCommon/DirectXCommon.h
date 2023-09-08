@@ -89,8 +89,4 @@ private: // ƒƒ“ƒoŠÖ”
 	bool CreateFence();
 	// imgui‚Ì‰Šú‰»
 	bool InitImgui();
-	// FPSŒÅ’è‰Šú‰»
-	void InitializeFixFPS();
-	// FPSŒÅ’èXV
-	void UpdateFixFPS();
 };

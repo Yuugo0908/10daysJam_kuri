@@ -1,5 +1,4 @@
 #pragma once
-
 #include "DirectXCommon.h"
 #include "Mouse.h"
 #include "DebugText.h"

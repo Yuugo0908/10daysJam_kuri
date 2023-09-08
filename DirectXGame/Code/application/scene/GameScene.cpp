@@ -67,7 +67,8 @@ void GameScene::Update()
 
 void GameScene::Draw()
 {
-	//SetImgui();
+	// ImGuiの描画
+	SetImgui();
 
 #pragma region 背景画像描画
 	// 背景画像描画前処理
@@ -123,4 +124,13 @@ void GameScene::Draw()
 	// 画像描画後処理
 	Image2d::PostDraw();
 #pragma endregion 前景画像描画
+}
+
+void GameScene::SetImgui()
+{
+	ImGui::Begin("DebugText");
+	ImGui::SetWindowSize(ImVec2(300, 200));
+	ImGui::Separator();
+	ImGui::Text("Frame rate: %6.2f fps", ImGui::GetIO().Framerate);
+	ImGui::End();
 }

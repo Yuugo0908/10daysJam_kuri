@@ -36,6 +36,8 @@ public: // メンバ関数
 	void Update() override;
 	// 描画
 	void Draw() override;
+	// Imguiの設定
+	void SetImgui();
 
 private: // メンバ変数
 	Keyboard* keyboard = Keyboard::GetInstance();
