@@ -3,8 +3,8 @@
 #include <Windows.h>
 #include <wrl.h>
 #include <d3d12.h>
-#include "Operator.h"
 #include <string>
+#include "Operator.h"
 
 class Image2d
 {
@@ -31,8 +31,9 @@ public: // サブクラス
 		debugTextNum,
 		titleNum, backNum, GameClearNum, GameOverNum,
 		mouseNum, mouseLeftNum, mouseRightNum,
-		shari,sushi_geta,
-		maguro, maguro_neta
+		shari, wasabi, sushi_geta,
+		maguro, samon, ebi, tamago, ika,
+		maguro_neta, samon_neta, ebi_neta, tamago_neta, ika_neta
 	};
 
 public: // 静的メンバ関数
@@ -105,13 +106,25 @@ public: // メンバ関数
 
 	// 座標取得
 	const XMFLOAT2& GetPosition() { return position; }
+	const XMFLOAT2& GetCenterPosition()
+	{
+		centerPos = position + (size / 2.0f);
+		return centerPos;
+	}
 	// サイズ取得
 	const XMFLOAT2& GetSize() { return size; }
+	// 解像度取得
+	const XMFLOAT2& GetDataSize() { return dataSize; }
 
 	// ドラッグ設定
 	void SetIsDrag(bool isDrag) { this->isDrag = isDrag; }
 	// ドラッグ取得
 	const bool& GetIsDrag() { return isDrag; }
+
+	// 番号設定
+	void SetNumber(int number) { this->number = number; }
+	// 番号取得
+	const int& GetNumber() { return number; }
 protected: // メンバ変数
 	// 頂点バッファ
 	ComPtr<ID3D12Resource> vertBuffer;
@@ -125,6 +138,8 @@ protected: // メンバ変数
 	float rotation = 0.0f;
 	// 座標
 	XMFLOAT2 position{};
+	// 中心座標
+	XMFLOAT2 centerPos{};
 	// 画像幅、高さ
 	XMFLOAT2 size = { 100.0f, 100.0f };
 	// アンカーポイント
@@ -143,4 +158,8 @@ protected: // メンバ変数
 	XMFLOAT2 texSize = { 100.0f, 100.0f };
 	// マウスで掴んでいるか
 	bool isDrag = false;
+	// 元データの解像度
+	XMFLOAT2 dataSize{};
+	// 画像の名前
+	int number{};
 };

@@ -2,15 +2,13 @@
 
 #include "DirectXCommon.h"
 #include "Mouse.h"
-#include "Image2d.h"
 #include "DebugText.h"
-#include "Operator.h"
-#include "Particle.h"
 #include "SafeDelete.h"
 
 #include <stdlib.h>
 #include <time.h>
 #include <list>
+
 class Sushi
 {
 private:
@@ -33,18 +31,28 @@ public: // メンバ関数
 	void Draw();
 
 private: // メンバ変数
-	Controller* controller = Controller::GetInstance();
 	Mouse* mouse = Mouse::GetInstance();
-	Camera* camera = Camera::GetInstance();
 
 	// 画像
 	Image2d* shari = nullptr;
 	Image2d* sushi_geta = nullptr;
 
-	std::list<Image2d*> sushiList;
+	//寿司一覧
+	std::vector<Image2d*> sushiList;
 	Image2d* maguro = nullptr;
+	Image2d* samon = nullptr;
+	Image2d* ebi = nullptr;
+	Image2d* tamago = nullptr;
+	Image2d* ika = nullptr;
 	Image2d* maguro_neta = nullptr;
+	Image2d* samon_neta = nullptr;
+	Image2d* ebi_neta = nullptr;
+	Image2d* tamago_neta = nullptr;
+	Image2d* ika_neta = nullptr;
 
-	bool isDrag = false;
+	bool isDrag = false; // 指定の寿司をドラッグしているか
+	bool isDragNow = false; // 何かの寿司をドラッグしているか
+	int dragNum = 0; // ドラッグしている寿司の番号
+	int imgNumber{}; // 画像の登録番号
 };
 

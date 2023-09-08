@@ -59,6 +59,6 @@ private: // ƒƒ“ƒo•Ï”
 
 	float alpha = 0.0f;
 	float alphaAdd = 0.0f;
-	int fadeNum = 16;
+	int fadeNum = 50;
 	int fadeCount = 0;
 };

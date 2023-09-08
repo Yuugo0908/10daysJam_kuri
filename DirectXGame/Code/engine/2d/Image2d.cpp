@@ -588,6 +588,9 @@ void Image2d::TransferVertices()
 		float tex_top = texBase.y / resDesc.Height;
 		float tex_bottom = (texBase.y + texSize.y) / resDesc.Height;
 
+		// 解像度として保存する(ゲッター用)
+		dataSize = { (float)resDesc.Width, (float)resDesc.Height};
+
 		vertices[LB].uv = { tex_left,	tex_bottom }; // 左下
 		vertices[LT].uv = { tex_left,	tex_top }; // 左上
 		vertices[RB].uv = { tex_right,	tex_bottom }; // 右下

@@ -52,7 +52,39 @@ void MyGame::Initialize()
 	{
 		assert(0);
 	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::samon, "samon"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::ebi, "ebi"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::tamago, "tamago"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::ika, "ika"))
+	{
+		assert(0);
+	}
 	if (!Image2d::LoadTexture(Image2d::ImgNumber::maguro_neta, "maguro_neta"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::samon_neta, "samon_neta"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::ebi_neta, "ebi_neta"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::tamago_neta, "tamago_neta"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::ika_neta, "ika_neta"))
 	{
 		assert(0);
 	}
