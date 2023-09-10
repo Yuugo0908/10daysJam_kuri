@@ -97,15 +97,17 @@ XMFLOAT2 Mouse::GetMousePos()
 	//マウス座標取得
 	GetCursorPos(&po);
 
-	//hwnd = winApp->GetHwnd();
-	//GetClientRect(hwnd, &rcClient);
+	hwnd = winApp->GetHwnd();
+	GetClientRect(hwnd, &rcClient);
 
-	//ptClientUL.x = rcClient.left;
-	//ptClientUL.y = rcClient.top;
-	//ptClientLR.x = rcClient.right;
-	//ptClientLR.y = rcClient.bottom;
-	//ClientToScreen(hwnd, &ptClientUL);
-	//ClientToScreen(hwnd, &ptClientLR);
+	ptClientUL.x = rcClient.left;
+	ptClientUL.y = rcClient.top;
+	ptClientLR.x = rcClient.right;
+	ptClientLR.y = rcClient.bottom;
+	ClientToScreen(hwnd, &ptClientUL);
+	ClientToScreen(hwnd, &ptClientLR);
+
+	SetRect(&rcClient, ptClientUL.x, ptClientUL.y, ptClientLR.x, ptClientLR.y);
 
 	XMFLOAT2 cursorPos = { (float)po.x - ptClientUL.x, (float)po.y - ptClientUL.y };
 	return cursorPos;

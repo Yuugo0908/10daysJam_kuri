@@ -31,8 +31,8 @@ void FadeScene::Initialize()
 	for (int i = 0; i < fadeNum; i++)
 	{
 		fadeImg = Image2d::Create(fadeNum, { 0.0f,0.0f });
-		fadeImg->SetPosition({ 80.0f * i, 0.0f });
-		fadeImg->SetSize({ 80.0f ,720.0f });
+		fadeImg->SetPosition({ 120.0f * i, 0.0f });
+		fadeImg->SetSize({ 120.0f ,1080.0f });
 		fadeImg->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 		fade.push_back(fadeImg);
 	}

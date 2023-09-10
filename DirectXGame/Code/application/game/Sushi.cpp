@@ -5,7 +5,7 @@ Sushi::Sushi()
 	// 寿司下駄
 	sushi_geta = Image2d::Create(Image2d::ImgNumber::sushi_geta, { 0.0f, 0.0f });
 	sushi_geta->SetPosition({ 520.0f, 80.0f });
-	sushi_geta->SetSize({ 240.0f, 240.0f });
+	sushi_geta->SetSize(sushi_geta->GetDataSize());
 	sushi_geta->SetNumber(Image2d::ImgNumber::sushi_geta);
 }
 
@@ -173,7 +173,7 @@ void Sushi::Update()
 #pragma endregion
 	}
 
-	// ドラッグしている画像データの取得用
+#pragma region ドラッグしている画像データの取得用
 	for (int i = 0; i < sushi_list.size(); i++)
 	{
 		// 画像の最小と最大
@@ -218,6 +218,7 @@ void Sushi::Update()
 		}
 #pragma endregion
 	}
+#pragma endregion
 
 	// マウスの相対座標を表示
 	DebugText::GetInstance()->Print(10.0f, 10.0f, 2.0f, "(%d, %d)", (int)mouse->GetMousePos().x, (int)mouse->GetMousePos().y);

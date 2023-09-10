@@ -10,14 +10,14 @@ void GameScene::Initialize()
 
 	// 画像の生成
 	mouseImg = Image2d::Create(Image2d::ImgNumber::mouseNum, { 0.0f, 0.0f });
-	mouseImg->SetPosition({ 1130.0f, 570.0f });
-	mouseImg->SetSize({ 128.0f,128.0f });
+	mouseImg->SetPosition({ 1630.0f, 770.0f });
+	mouseImg->SetSize(mouseImg->GetDataSize() / 2);
 	mouseLeftImg = Image2d::Create(Image2d::ImgNumber::mouseLeftNum, { 0.0f, 0.0f });
-	mouseLeftImg->SetPosition({ 1130.0f, 570.0f });
-	mouseLeftImg->SetSize({ 128.0f,128.0f });
+	mouseLeftImg->SetPosition({ 1630.0f, 770.0f });
+	mouseLeftImg->SetSize(mouseLeftImg->GetDataSize() / 2);
 	mouseRightImg = Image2d::Create(Image2d::ImgNumber::mouseRightNum, { 0.0f, 0.0f });
-	mouseRightImg->SetPosition({ 1130.0f, 570.0f });
-	mouseRightImg->SetSize({ 128.0f,128.0f });
+	mouseRightImg->SetPosition({ 1630.0f, 770.0f });
+	mouseRightImg->SetSize(mouseRightImg->GetDataSize() / 2);
 
 	// パーティクル生成
 
