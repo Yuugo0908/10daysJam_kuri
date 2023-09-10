@@ -1,0 +1,10 @@
+diff a/DirectXGame/Code/application/game/Sushi.cpp b/DirectXGame/Code/application/game/Sushi.cpp	(rejected hunks)
+@@ -142,8 +142,6 @@
+ 
+ #pragma region �V�����ƃl�^��g�ݍ��킹��
+ 
+-		if (shari->GetPosition() <= maxPos && shari->GetPosition() + shari->GetSize() >= minPos &&
+-			imgNumber >= Image2d::ImgNumber::maguro_neta)
+ 		if (sushi_list[i]->GetNumber() == Image2d::ImgNumber::shari)
+ 		{
+ 			if (netaNumber == Image2d::ImgNumber::maguro_neta)

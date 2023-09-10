@@ -75,7 +75,7 @@ void GameScene::Update()
 	}
 #pragma endregion
 
-	sushi->Update();
+	sushi_list->Update();
 	rice->Update();
 }
 
@@ -134,7 +134,7 @@ void GameScene::Draw()
 	}
 	else
 	{
-		sushi->Draw();
+		sushi_list->Draw();
 	}
 
 	// フェードの描画

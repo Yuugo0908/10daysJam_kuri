@@ -31,11 +31,15 @@ private: // ƒƒ“ƒo•Ï”
 	Mouse* mouse = Mouse::GetInstance();
 
 	// ‰æ‘œ
+	Image2d* rice = nullptr;
+	Image2d* watar = nullptr;
+
+	Image2d* kama = nullptr;
+	Image2d* kama_watar = nullptr;
+	Image2d* kama_rice_watar = nullptr;
+	Image2d* kama_rice = nullptr;
+
 	Image2d* suihan_open = nullptr;
 	Image2d* suihan_close = nullptr;
-	Image2d* watar = nullptr;
-	Image2d* rice = nullptr;
-	Image2d* wasabi = nullptr;
-
 };
 
