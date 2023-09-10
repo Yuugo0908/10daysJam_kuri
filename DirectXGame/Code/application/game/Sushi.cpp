@@ -2,27 +2,7 @@
 
 Sushi::Sushi()
 {
-	// ŽõŽi(ƒlƒ^)
-
-	// ŽõŽi(Š®¬)
-	samon = Image2d::Create(Image2d::ImgNumber::samon, { 0.0f, 0.0f });
-	samon->SetPosition({ 300.0f, 500.0f });
-	samon->SetSize(samon->GetDataSize());
-	samon->SetNumber(Image2d::ImgNumber::samon);
-	ebi = Image2d::Create(Image2d::ImgNumber::ebi, { 0.0f, 0.0f });
-	ebi->SetPosition({ 300.0f, 500.0f });
-	ebi->SetSize(ebi->GetDataSize());
-	ebi->SetNumber(Image2d::ImgNumber::ebi);
-	tamago = Image2d::Create(Image2d::ImgNumber::tamago, { 0.0f, 0.0f });
-	tamago->SetPosition({ 300.0f, 500.0f });
-	tamago->SetSize(tamago->GetDataSize());
-	tamago->SetNumber(Image2d::ImgNumber::tamago);
-	ika = Image2d::Create(Image2d::ImgNumber::ika, { 0.0f, 0.0f });
-	ika->SetPosition({ 300.0f, 500.0f });
-	ika->SetSize(ika->GetDataSize());
-	ika->SetNumber(Image2d::ImgNumber::ika);
-
-	// ƒVƒƒƒŠ‚ÆŽõŽi‰º‘Ê
+	// ŽõŽi‰º‘Ê
 	sushi_geta = Image2d::Create(Image2d::ImgNumber::sushi_geta, { 0.0f, 0.0f });
 	sushi_geta->SetPosition({ 520.0f, 80.0f });
 	sushi_geta->SetSize({ 240.0f, 240.0f });
