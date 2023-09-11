@@ -4,12 +4,8 @@
 void GameClearScene::Initialize()
 {
 	// ƒQ[ƒ€ƒNƒŠƒA‰æ‘œ¶¬
-	result = Image2d::Create(Image2d::ImgNumber::resultNum, { 0.0f,0.0f });
+	result = Image2d::Create(Image2d::ImgNumber::result, { 0.0f,0.0f });
 	result->SetSize({ 1280.0f,720.0f });
-	// ”wŒi‰æ‘œ¶¬
-	backGround = Image2d::Create(Image2d::ImgNumber::backNum, { 0.0f,0.0f });
-	backGround->SetSize({ 1280.0f,720.0f });
-	backGround->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 }
 
 void GameClearScene::Finalize()

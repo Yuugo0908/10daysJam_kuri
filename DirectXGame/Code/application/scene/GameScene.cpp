@@ -9,17 +9,23 @@ void GameScene::Initialize()
 	Object3d::SetCamera(camera);
 
 	// 画像の生成
-	mouseImg = Image2d::Create(Image2d::ImgNumber::mouseNum, { 0.0f, 0.0f });
+	// 背景画像生成
+	backGround_1 = Image2d::Create(Image2d::ImgNumber::back_1, { 0.0f,0.0f });
+	backGround_1->SetSize({ 1920.0f,1080.0f });
+	backGround_1->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+	backGround_2 = Image2d::Create(Image2d::ImgNumber::back_2, { 0.0f,0.0f });
+	backGround_2->SetSize({ 1920.0f,1080.0f });
+	backGround_2->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
+
+	mouseImg = Image2d::Create(Image2d::ImgNumber::mouse, { 0.0f, 0.0f });
 	mouseImg->SetPosition({ 1630.0f, 770.0f });
 	mouseImg->SetSize(mouseImg->GetDataSize() / 2);
-	mouseLeftImg = Image2d::Create(Image2d::ImgNumber::mouseLeftNum, { 0.0f, 0.0f });
+	mouseLeftImg = Image2d::Create(Image2d::ImgNumber::mouseLeft, { 0.0f, 0.0f });
 	mouseLeftImg->SetPosition({ 1630.0f, 770.0f });
 	mouseLeftImg->SetSize(mouseLeftImg->GetDataSize() / 2);
-	mouseRightImg = Image2d::Create(Image2d::ImgNumber::mouseRightNum, { 0.0f, 0.0f });
+	mouseRightImg = Image2d::Create(Image2d::ImgNumber::mouseRight, { 0.0f, 0.0f });
 	mouseRightImg->SetPosition({ 1630.0f, 770.0f });
 	mouseRightImg->SetSize(mouseRightImg->GetDataSize() / 2);
-
-	// パーティクル生成
 
 	// ライトの生成
 	light = Light::Create();
@@ -88,15 +94,8 @@ void GameScene::Draw()
 	// 背景画像描画前処理
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
 
-	mouseImg->Draw();
-	if (mouse->PushMouseLeft())
-	{
-		mouseLeftImg->Draw();
-	}
-	if (mouse->PushMouseRight())
-	{
-		mouseRightImg->Draw();
-	}
+	backGround_1->Draw();
+	backGround_2->Draw();
 
 	// 画像描画後処理
 	Image2d::PostDraw();

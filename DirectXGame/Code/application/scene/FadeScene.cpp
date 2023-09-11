@@ -5,13 +5,21 @@ bool FadeScene::fadeOutEnd = false;
 
 FadeScene::FadeScene()
 {
+	door_left = Image2d::Create(Image2d::ImgNumber::door_left, { 0.0f,0.0f });
+	door_left->SetPosition(door_left_open_pos);
+	door_left->SetSize({ 960.0f ,1080.0f });
+	door_left->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 
+	door_right = Image2d::Create(Image2d::ImgNumber::door_right, { 0.0f,0.0f });
+	door_right->SetPosition(door_right_open_pos);
+	door_right->SetSize({ 960.0f ,1080.0f });
+	door_right->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 }
 
 FadeScene::~FadeScene()
 {
-	safe_delete(fadeImg);
-	fade.erase(fade.begin(), fade.end());
+	safe_delete(door_right);
+	safe_delete(door_left);
 }
 
 FadeScene* FadeScene::GetInstance()
@@ -19,23 +27,6 @@ FadeScene* FadeScene::GetInstance()
 	static FadeScene instance;
 
 	return &instance;
-}
-
-void FadeScene::Initialize()
-{
-	if (!Image2d::LoadTexture(fadeNum, "fade"))
-	{
-		assert(0);
-	}
-
-	for (int i = 0; i < fadeNum; i++)
-	{
-		fadeImg = Image2d::Create(fadeNum, { 0.0f,0.0f });
-		fadeImg->SetPosition({ 120.0f * i, 0.0f });
-		fadeImg->SetSize({ 120.0f ,1080.0f });
-		fadeImg->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
-		fade.push_back(fadeImg);
-	}
 }
 
 void FadeScene::Update()
@@ -48,11 +39,15 @@ void FadeScene::Update()
 		alphaAdd = 0.0f;
 		break;
 	case FadeInPlay:
-		if (!fadeInEnd && alpha <= 1.0f && fadeCount <= fadeNum - 1)
+		if (!fadeInEnd && alpha <= 3.0f)
 		{
 			alpha += alphaAdd;
 
-			fade[fadeCount]->SetColor({ 1.0f, 1.0f, 1.0f, alpha });
+			if (alpha < 1.0f)
+			{
+				door_left->SetPosition(Easing::easeIn(door_left_open_pos, door_left_close_pos, alpha));
+				door_right->SetPosition(Easing::easeIn(door_right_open_pos, door_right_close_pos, alpha));
+			}
 		}
 		else
 		{
@@ -64,11 +59,12 @@ void FadeScene::Update()
 		fadeCount = 0;
 		break;
 	case FadeOutPlay:
-		if (!fadeOutEnd && alpha > 0.0f && fadeCount <= fadeNum - 1)
+		if (!fadeOutEnd && alpha > 0.0f)
 		{
 			alpha -= alphaAdd;
 
-			fade[fadeCount]->SetColor({ 1.0f, 1.0f, 1.0f, alpha });
+			door_left->SetPosition(Easing::easeOut(door_left_open_pos, door_left_close_pos, alpha));
+			door_right->SetPosition(Easing::easeOut(door_right_open_pos, door_right_close_pos, alpha));
 		}
 		else
 		{
@@ -82,25 +78,12 @@ void FadeScene::Update()
 	default:
 		break;
 	}
-
-	if (fadeState == FadeInPlay && alpha > 1.0f && fadeCount < fadeNum - 1)
-	{
-		alpha = 0.0f;
-		fadeCount++;
-	}
-	else if(fadeState == FadeOutPlay && alpha <= 0.0f && fadeCount < fadeNum - 1)
-	{
-		alpha = 1.0f;
-		fadeCount++;
-	}
 }
 
 void FadeScene::Draw()
 {
-	for (int i = 0; i < fade.size(); i++)
-	{
-		fade[i]->Draw();
-	}
+	door_left->Draw();
+	door_right->Draw();
 }
 
 void FadeScene::reset()
@@ -113,7 +96,7 @@ void FadeScene::FadeIn(float alpha)
 	if (fadeState != FadeInPlay && fadeState != FadeInEnd)
 	{
 		this->alpha = alpha;
-		alphaAdd = 0.15f;
+		alphaAdd = 0.02f;
 		fadeInEnd = false;
 
 		// フェードイン開始
@@ -126,7 +109,7 @@ void FadeScene::FadeOut(float alpha)
 	if (fadeState != FadeOutPlay && fadeState != FadeOutEnd)
 	{
 		this->alpha = alpha;
-		alphaAdd = 0.15f;
+		alphaAdd = 0.02f;
 		fadeOutEnd = false;
 
 		// フェードアウト開始

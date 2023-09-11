@@ -7,30 +7,43 @@ void MyGame::Initialize()
 	Framework::Initialize();
 
 	// タイトル画像読み込み
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::titleNum, "title"))
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::title, "title"))
 	{
 		assert(0);
 	}
 	// 背景画像読み込み
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::backNum, "backGround"))
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::back_1, "backGround_1"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::back_2, "backGround_2"))
 	{
 		assert(0);
 	}
 	// リザルト画像読み込み
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::resultNum, "result"))
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::result, "result"))
+	{
+		assert(0);
+	}
+	// インサート画像読み込み
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::door_right, "door_right"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::door_left, "door_left"))
 	{
 		assert(0);
 	}
 	// チュートリアル用画像の読み込み
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::mouseNum, "mouse"))
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::mouse, "mouse"))
 	{
 		assert(0);
 	}
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::mouseLeftNum, "mouse_left"))
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::mouseLeft, "mouse_left"))
 	{
 		assert(0);
 	}
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::mouseRightNum, "mouse_right"))
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::mouseRight, "mouse_right"))
 	{
 		assert(0);
 	}
@@ -84,14 +97,10 @@ void MyGame::Initialize()
 		assert(0);
 	}
 
-	// フェードの初期化
-	FadeScene::GetInstance()->Initialize();
-
 	// シーンファクトリーを生成し、マネージャーにセット
 	sceneFactory_ = new SceneFactory();
 	SceneManager::GetInstance()->SetSceneFactory(sceneFactory_);
-
-	SceneManager::GetInstance()->ChangeScene("Game");
+	SceneManager::GetInstance()->ChangeScene("Title");
 
 	//現在時刻をマイクロ秒で取得
 	currentTimeMicro = []() {

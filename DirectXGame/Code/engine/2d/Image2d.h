@@ -28,9 +28,10 @@ public: // サブクラス
 	// 管理番号
 	enum ImgNumber
 	{
-		debugTextNum,
-		titleNum, backNum, resultNum,
-		mouseNum, mouseLeftNum, mouseRightNum,
+		debugText,
+		title, back_1, back_2, result,
+		mouse, mouseLeft, mouseRight,
+		door_right, door_left,
 
 		rice, watar, 
 		kama, kama_watar, kama_rice_watar, kama_rice,

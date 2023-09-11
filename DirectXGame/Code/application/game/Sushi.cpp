@@ -3,16 +3,26 @@
 Sushi::Sushi()
 {
 	// 寿司下駄
-	sushi_geta = Image2d::Create(Image2d::ImgNumber::sushi_geta, { 0.0f, 0.0f });
-	sushi_geta->SetPosition({ 520.0f, 80.0f });
-	sushi_geta->SetSize(sushi_geta->GetDataSize());
-	sushi_geta->SetNumber(Image2d::ImgNumber::sushi_geta);
+	sushi_geta_1 = Image2d::Create(Image2d::ImgNumber::sushi_geta, { 0.0f, 0.0f });
+	sushi_geta_1->SetPosition({ 1319.0f / 2, 1100.0f / 2 });
+	sushi_geta_1->SetSize(sushi_geta_1->GetDataSize());
+	sushi_geta_1->SetNumber(Image2d::ImgNumber::sushi_geta);
+	sushi_geta_2 = Image2d::Create(Image2d::ImgNumber::sushi_geta, { 0.0f, 0.0f });
+	sushi_geta_2->SetPosition({ 1319.0f / 2, 1100.0f / 2 });
+	sushi_geta_2->SetSize(sushi_geta_2->GetDataSize());
+	sushi_geta_2->SetNumber(Image2d::ImgNumber::sushi_geta);
+	sushi_geta_3 = Image2d::Create(Image2d::ImgNumber::sushi_geta, { 0.0f, 0.0f });
+	sushi_geta_3->SetPosition({ 1319.0f / 2, 1100.0f / 2 });
+	sushi_geta_3->SetSize(sushi_geta_3->GetDataSize());
+	sushi_geta_3->SetNumber(Image2d::ImgNumber::sushi_geta);
+	sushi_getas.push_back(sushi_geta_1);
+	sushi_getas.push_back(sushi_geta_2);
+	sushi_getas.push_back(sushi_geta_3);
 }
 
 Sushi::~Sushi()
 {
 	safe_delete(shari);
-	safe_delete(sushi_geta);
 }
 
 Sushi* Sushi::GetInstance()
@@ -22,6 +32,89 @@ Sushi* Sushi::GetInstance()
 }
 
 void Sushi::Update()
+{
+	// ネタ、シャリ生成
+	MakeNeta();
+	// 寿司生成
+	MakeSushi();
+	// ドラッグアンドドロップ
+	DragDrop();
+}
+
+void Sushi::Draw()
+{
+	for (int i = 0; i < sushi_getas.size(); i++)
+	{
+		sushi_getas[i]->Draw();
+	}
+
+	// 描画はリストの後ろから
+	for (int j = (int)shari_list.size() - 1; j >= 0; --j)
+	{
+		shari_list[j]->Draw();
+	}
+
+	for (int i = (int)sushi_list.size() - 1; i >= 0; --i)
+	{
+		sushi_list[i]->Draw();
+	}
+
+	if ((int)sushi_list.size() != 0)
+	{
+		// ドラッグしている寿司を最前面にする
+		sushi_list[dragNum]->Draw();
+	}
+}
+
+void Sushi::DragDrop()
+{
+#pragma region ドラッグアンドドロップ
+	for (int i = 0; i < sushi_list.size(); i++)
+	{
+		// 画像の最小と最大
+		XMFLOAT2 minPos = sushi_list[i]->GetCenterPosition() - sushi_list[i]->GetSize() / 2;
+		XMFLOAT2 maxPos = sushi_list[i]->GetCenterPosition() + sushi_list[i]->GetSize() / 2;
+		isDrag = sushi_list[i]->GetIsDrag();
+
+		// 画像がドラッグ状態なら
+		if (isDrag)
+		{
+			// 画像の中心をマウス座標にする
+			sushi_list[i]->SetCenterPos(mouse->GetMousePos(), sushi_list[i]->GetSize());
+
+			// ドラッグした状態で離したら
+			if (mouse->ReleaseMouseLeft())
+			{
+				// ドラッグ状態の解除
+				sushi_list[i]->SetIsDrag(false);
+				// ネタの画像番号を取得
+				netaNumber = sushi_list[i]->GetNumber();
+				// 現時点ではドラッグしていない
+				isDragNow = false;
+
+				if (dragData != nullptr)
+				{
+					drag_maxPos = dragData->GetCenterPosition() + dragData->GetSize() / 2;
+					drag_minPos = dragData->GetCenterPosition() - dragData->GetSize() / 2;
+				}
+			}
+		}
+		else if (!isDragNow)
+		{
+			//マウス左クリックが画像内で押されているか
+			if (mouse->TriggerMouseLeft() && minPos < mouse->GetMousePos() && mouse->GetMousePos() < maxPos)
+			{
+				sushi_list[i]->SetIsDrag(true);
+				isDragNow = true;
+				dragNum = i;
+				dragData = sushi_list[i];
+			}
+		}
+	}
+#pragma endregion
+}
+
+void Sushi::MakeNeta()
 {
 # pragma region ネタシャリ生成
 	// マグロ生成
@@ -81,15 +174,13 @@ void Sushi::Update()
 		shari_list.push_back(shari);
 	}
 #pragma endregion
+}
 
+void Sushi::MakeSushi()
+{
 	for (int j = 0; j < shari_list.size(); j++)
 	{
-#pragma region シャリにわさびをつける
-
-#pragma endregion
-
 #pragma region シャリとネタを組み合わせる
-
 		if (isDragNow == false && shari_list[j]->GetPosition() <= drag_maxPos && shari_list[j]->GetPosition() + shari_list[j]->GetSize() >= drag_minPos)
 		{
 			if (netaNumber == Image2d::ImgNumber::maguro_neta)
@@ -165,83 +256,14 @@ void Sushi::Update()
 		{
 			netaNumber = 0;
 		}
-
 #pragma endregion
 
 #pragma region 寿司を寿司下駄にのせる
 
 #pragma endregion
 	}
-
-#pragma region ドラッグしている画像データの取得用
-	for (int i = 0; i < sushi_list.size(); i++)
-	{
-		// 画像の最小と最大
-		XMFLOAT2 minPos = sushi_list[i]->GetCenterPosition() - sushi_list[i]->GetSize() / 2;
-		XMFLOAT2 maxPos = sushi_list[i]->GetCenterPosition() + sushi_list[i]->GetSize() / 2;
-		isDrag = sushi_list[i]->GetIsDrag();
-
-#pragma region ドラッグアンドドロップ
-		// 画像がドラッグ状態なら
-		if (isDrag)
-		{
-			// 画像の中心をマウス座標にする
-			sushi_list[i]->SetCenterPos(mouse->GetMousePos(), sushi_list[i]->GetSize());
-
-			// ドラッグした状態で離したら
-			if (mouse->ReleaseMouseLeft())
-			{
-				// ドラッグ状態の解除
-				sushi_list[i]->SetIsDrag(false);
-				// ネタの画像番号を取得
-				netaNumber = sushi_list[i]->GetNumber();
-				// 現時点ではドラッグしていない
-				isDragNow = false;
-
-				if (dragData != nullptr)
-				{
-					drag_maxPos = dragData->GetCenterPosition() + dragData->GetSize() / 2;
-					drag_minPos = dragData->GetCenterPosition() - dragData->GetSize() / 2;
-				}
-			}
-		}
-		else if (!isDragNow)
-		{
-			//マウス左クリックが画像内で押されているか
-			if (mouse->TriggerMouseLeft() && minPos < mouse->GetMousePos() && mouse->GetMousePos() < maxPos)
-			{
-				sushi_list[i]->SetIsDrag(true);
-				isDragNow = true;
-				dragNum = i;
-				dragData = sushi_list[i];
-			}
-		}
-#pragma endregion
-	}
-#pragma endregion
-
-	// マウスの相対座標を表示
-	DebugText::GetInstance()->Print(10.0f, 10.0f, 2.0f, "(%d, %d)", (int)mouse->GetMousePos().x, (int)mouse->GetMousePos().y);
 }
 
-void Sushi::Draw()
+void Sushi::Pattern()
 {
-	sushi_geta->Draw();
-
-	// 描画はリストの後ろから
-	for (int j = (int)shari_list.size() - 1; j >= 0; --j)
-	{
-		shari_list[j]->Draw();
-	}
-
-	for (int i = (int)sushi_list.size() - 1; i >= 0; --i)
-	{
-		sushi_list[i]->Draw();
-	}
-
-	if ((int)sushi_list.size() != 0)
-	{
-		// ドラッグしている寿司を最前面にする
-		sushi_list[dragNum]->Draw();
-	}
 }

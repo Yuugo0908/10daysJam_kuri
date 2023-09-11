@@ -29,14 +29,24 @@ public: // メンバ関数
 	void Update();
 	// 描画
 	void Draw();
+	// ドラッグアンドドロップ
+	void DragDrop();
+	// ネタ生成
+	void MakeNeta();
+	// 寿司生成
+	void MakeSushi();
+	// パターン生成
+	void Pattern();
 
 private: // メンバ変数
 	Keyboard* keyboard = Keyboard::GetInstance();
 	Mouse* mouse = Mouse::GetInstance();
 
 	// 画像
-	Image2d* sushi_geta = nullptr;
-	Image2d* wasabi = nullptr;
+	std::vector<Image2d*> sushi_getas;
+	Image2d* sushi_geta_1 = nullptr;
+	Image2d* sushi_geta_2 = nullptr;
+	Image2d* sushi_geta_3 = nullptr;
 
 	//寿司一覧
 	std::vector<Image2d*> sushi_list;
@@ -46,7 +56,9 @@ private: // メンバ変数
 	Image2d* tamago = nullptr;
 	Image2d* ika = nullptr;
 	bool isCombine = false;
+
 	// ネタ一覧
+	const XMFLOAT2 neta_SetPosition = {};
 	Image2d* maguro_neta = nullptr;
 	Image2d* samon_neta = nullptr;
 	Image2d* ebi_neta = nullptr;

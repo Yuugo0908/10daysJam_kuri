@@ -5,8 +5,8 @@
 void TitleScene::Initialize()
 {
 	// ƒ^ƒCƒgƒ‹‰æ‘œ¶¬
-	title = Image2d::Create(Image2d::ImgNumber::titleNum, { 0.0f,0.0f });
-	title->SetSize({ 1280.0f,720.0f });
+	title = Image2d::Create(Image2d::ImgNumber::title, { 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });
+	title->SetSize({ 1920.0f,1080.0f });
 
 	// ƒ‰ƒCƒg‚Ì¶¬
 	light = Light::Create();
@@ -28,7 +28,7 @@ void TitleScene::Update()
 		FadeScene::GetInstance()->FadeOut(1.0f);
 	}
 
-	if (FadeScene::fadeOutEnd && (keyboard->TriggerKey(DIK_SPACE) || controller->GetPadState(Controller::State::A, Controller::Type::TRIGGER)))
+	if (FadeScene::fadeOutEnd && keyboard->TriggerKey(DIK_SPACE))
 	{
 		changeFlag = true;
 	}
@@ -49,6 +49,8 @@ void TitleScene::Draw()
 	// ”wŒi‰æ‘œ•`‰æ‘Oˆ—
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
 
+	title->Draw();
+
 	// ‰æ‘œ•`‰æŒãˆ—
 	Image2d::PostDraw();
 	// [“xƒoƒbƒtƒ@ƒNƒŠƒA
@@ -66,9 +68,6 @@ void TitleScene::Draw()
 #pragma region ‘OŒi‰æ‘œ•`‰æ
 	// ‘OŒi‰æ‘œ•`‰æ‘Oˆ—
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
-
-	// ‘OŒi‰æ‘œ‚Ì•`‰æ
-	title->Draw();
 
 	// ƒtƒF[ƒh‚Ì•`‰æ
 	FadeScene::GetInstance()->Draw();

@@ -50,6 +50,8 @@ private: // メンバ変数
 	// 画像
 	Sushi* sushi_list = Sushi::GetInstance();
 	Rice* rice = Rice::GetInstance();
+	Image2d* backGround_1 = nullptr;
+	Image2d* backGround_2 = nullptr;
 	Image2d* mouseImg = nullptr;
 	Image2d* mouseLeftImg = nullptr;
 	Image2d* mouseRightImg = nullptr;

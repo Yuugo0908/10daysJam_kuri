@@ -37,8 +37,6 @@ public: // 静的メンバ変数
 	static bool fadeOutEnd;
 
 public: // メンバ関数
-	// 初期化
-	void Initialize();
 	// 毎フレーム処理
 	void Update();
 	// 描画
@@ -52,13 +50,18 @@ public: // メンバ関数
 
 private: // メンバ変数
 
-	Image2d* fadeImg = nullptr;
-	std::vector<Image2d*> fade;
-
+	Image2d* door_right = nullptr;
+	Image2d* door_left = nullptr;
 	FadeState fadeState{};
+
+	const XMFLOAT2 door_left_open_pos = { -960.0f, 0.0f };
+	const XMFLOAT2 door_left_close_pos = { 0.0f, 0.0f };
+	const XMFLOAT2 door_right_open_pos = { 1920.0f, 0.0f };
+	const XMFLOAT2 door_right_close_pos = { 960.0f, 0.0f };
 
 	float alpha = 0.0f;
 	float alphaAdd = 0.0f;
 	int fadeNum = 50;
+	int fadeNumMax = 16;
 	int fadeCount = 0;
 };
