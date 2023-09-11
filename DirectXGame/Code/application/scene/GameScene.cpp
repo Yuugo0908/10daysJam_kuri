@@ -17,6 +17,19 @@ void GameScene::Initialize()
 	backGround_2->SetSize({ 1920.0f,1080.0f });
 	backGround_2->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 
+	people_1 = Image2d::Create(Image2d::ImgNumber::people, { 80.0f,120.0f });
+	people_1->SetSize({ 600.0f, 450.0f });
+	people_2 = Image2d::Create(Image2d::ImgNumber::people, { 660.0f,120.0f });
+	people_2->SetSize({ 600.0f, 450.0f });
+	people_3 = Image2d::Create(Image2d::ImgNumber::people, { 1240.0f,120.0f });
+	people_3->SetSize({ 600.0f, 450.0f });
+	hukidasi_1 = Image2d::Create(Image2d::ImgNumber::hukidasi, { 80.0f,140.0f });
+	hukidasi_1->SetSize({ 600.0f, 450.0f });
+	hukidasi_2 = Image2d::Create(Image2d::ImgNumber::hukidasi, { 660.0f,140.0f });
+	hukidasi_2->SetSize({ 600.0f, 450.0f });
+	hukidasi_3 = Image2d::Create(Image2d::ImgNumber::hukidasi, { 1240.0f,140.0f });
+	hukidasi_3->SetSize({ 600.0f, 450.0f });
+
 	mouseImg = Image2d::Create(Image2d::ImgNumber::mouse, { 0.0f, 0.0f });
 	mouseImg->SetPosition({ 1630.0f, 770.0f });
 	mouseImg->SetSize(mouseImg->GetDataSize() / 2);
@@ -58,31 +71,10 @@ void GameScene::Update()
 		{
 		}
 	}
-	else if (isGameOver)
-	{
-		FadeScene::GetInstance()->FadeIn(-10.0f);
-		if (FadeScene::fadeInEnd)
-		{
-		}
-	}
-#pragma endregion
 
-#pragma region シーン切り替え
-	if (keyboard->TriggerKey(DIK_SPACE))
-	{
-		if (sceneChange)
-		{
-			sceneChange = false;
-		}
-		else
-		{
-			sceneChange = true;
-		}
-	}
 #pragma endregion
 
 	sushi_list->Update();
-	rice->Update();
 }
 
 void GameScene::Draw()
@@ -95,6 +87,12 @@ void GameScene::Draw()
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
 
 	backGround_1->Draw();
+	people_1->Draw();
+	people_2->Draw();
+	people_3->Draw();
+	hukidasi_1->Draw();
+	hukidasi_2->Draw();
+	hukidasi_3->Draw();
 	backGround_2->Draw();
 
 	// 画像描画後処理
@@ -127,14 +125,7 @@ void GameScene::Draw()
 	// 前景画像描画前処理
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
 
-	if (sceneChange)
-	{
-		rice->Draw();
-	}
-	else
-	{
-		sushi_list->Draw();
-	}
+	sushi_list->Draw();
 
 	// フェードの描画
 	FadeScene::GetInstance()->Draw();

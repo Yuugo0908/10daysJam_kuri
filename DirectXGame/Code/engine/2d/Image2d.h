@@ -32,11 +32,10 @@ public: // サブクラス
 		title, back_1, back_2, result,
 		mouse, mouseLeft, mouseRight,
 		door_right, door_left,
+		people, hukidasi,
 
-		rice, watar, 
-		kama, kama_watar, kama_rice_watar, kama_rice,
-		suihan_open, suihan_close,
-		shari, wasabi, sushi_geta,
+		kome_oke, watar, 
+		shari, sushi_geta,
 
 		maguro, samon, ebi, tamago, ika,
 		maguro_neta, samon_neta, ebi_neta, tamago_neta, ika_neta

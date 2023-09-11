@@ -20,6 +20,15 @@ void MyGame::Initialize()
 	{
 		assert(0);
 	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::people, "people"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::hukidasi, "hukidasi"))
+	{
+		assert(0);
+	}
+
 	// ƒŠƒUƒ‹ƒg‰æ‘œ“Ç‚İ‚İ
 	if (!Image2d::LoadTexture(Image2d::ImgNumber::result, "result"))
 	{
@@ -48,6 +57,10 @@ void MyGame::Initialize()
 		assert(0);
 	}
 	// õi‰æ‘œ‚Ì“Ç‚İ‚İ
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::kome_oke, "kome_oke"))
+	{
+		assert(0);
+	}
 	if (!Image2d::LoadTexture(Image2d::ImgNumber::shari, "shari"))
 	{
 		assert(0);
