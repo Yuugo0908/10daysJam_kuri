@@ -29,10 +29,14 @@ public: // 静的メンバ変数
 	static int score;
 
 public: // メンバ関数
+	// 初期化
+	void Initialize();
 	// 毎フレーム処理
 	void Update();
 	// 描画
 	void Draw();
+	// 終了
+	void Finalize();
 	// ドラッグアンドドロップ
 	void DragDrop();
 	// ネタ生成
@@ -56,9 +60,9 @@ private: // メンバ変数
 	Image2d* sushi_geta_1 = nullptr;
 	Image2d* sushi_geta_2 = nullptr;
 	Image2d* sushi_geta_3 = nullptr;
-	XMFLOAT2 geta_1_pos = { 750.0f, 570.0f };
-	XMFLOAT2 geta_2_pos = { 165.0f, 570.0f };
-	XMFLOAT2 geta_3_pos = { 1335.0f, 570.0f };
+	const XMFLOAT2 geta_1_pos = { 750.0f, 570.0f };
+	const XMFLOAT2 geta_2_pos = { 165.0f, 570.0f };
+	const XMFLOAT2 geta_3_pos = { 1335.0f, 570.0f };
 	// 下駄に乗っている寿司一覧
 	std::vector<Image2d*> geta_1_sushi_list;
 	std::vector<Image2d*> geta_2_sushi_list;
@@ -71,9 +75,13 @@ private: // メンバ変数
 	std::vector<int> geta_1_number;
 	std::vector<int> geta_2_number;
 	std::vector<int> geta_3_number;
+	// 下駄に置いたかのフラグ
+	bool isPut_1 = false;
+	bool isPut_2 = false;
+	bool isPut_3 = false;
 
 	// 米桶
-	XMFLOAT2 kome_oke_position = { -50.0f, 850.0f };
+	const XMFLOAT2 kome_oke_position = { -50.0f, 850.0f };
 	Image2d* kome_oke = nullptr;
 
 	//寿司一覧
@@ -123,8 +131,8 @@ private: // メンバ変数
 
 	// ドラッグしている画像データ取得用
 	Image2d* dragData = nullptr;
-	XMFLOAT2 drag_maxPos;
-	XMFLOAT2 drag_minPos;
+	XMFLOAT2 drag_maxPos = {};
+	XMFLOAT2 drag_minPos = {};
 
 	bool isDrag = false; // 指定の寿司をドラッグしているか
 	bool isDragNow = false; // 何かの寿司をドラッグしているか

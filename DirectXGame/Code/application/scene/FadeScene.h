@@ -5,6 +5,7 @@
 #include "BaseScene.h"
 #include "SafeDelete.h"
 #include "Easing.h"
+#include "Audio.h"
 
 enum FadeState
 {

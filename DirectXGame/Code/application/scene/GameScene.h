@@ -20,7 +20,6 @@
 #include "SafeDelete.h"
 #include "FadeScene.h"
 #include "Sushi.h"
-#include "Rice.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -48,8 +47,7 @@ private: // メンバ変数
 	Light* light = Light::GetInstance();
 
 	// 画像
-	Sushi* sushi_list = Sushi::GetInstance();
-	Rice* rice = Rice::GetInstance();
+	Sushi* sushi = Sushi::GetInstance();
 	Image2d* backGround_1 = nullptr;
 	Image2d* people_1 = nullptr;
 	Image2d* people_2 = nullptr;

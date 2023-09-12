@@ -6,6 +6,8 @@ void GameClearScene::Initialize()
 	// ƒQ[ƒ€ƒNƒŠƒA‰æ‘œ¶¬
 	result = Image2d::Create(Image2d::ImgNumber::result, { 0.0f,0.0f });
 	result->SetSize({ 1920.0f,1080.0f });
+
+	Sushi::GetInstance()->Finalize();
 }
 
 void GameClearScene::Finalize()
@@ -35,9 +37,17 @@ void GameClearScene::Update()
 		}
 	}
 
-	if (FadeScene::fadeOutEnd && !titleFlag)
+	if (FadeScene::fadeOutEnd)
 	{
-		DebugText::GetInstance()->Print(500, 350, 4, "%d", Sushi::score);
+		if (!titleFlag)
+		{
+			DebugText::GetInstance()->Print(500, 350, 4, "%d", Sushi::score);
+		}
+		if (seFlag)
+		{
+			seFlag = false;
+			Audio::GetInstance()->PlayWave("Resources/SE/result.wav", 0, 0.1f);
+		}
 	}
 }
 

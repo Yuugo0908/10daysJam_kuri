@@ -126,10 +126,8 @@ public: // メンバ関数
 	// ドラッグ取得
 	const bool& GetIsDrag() { return isDrag; }
 
-	// 番号設定
-	void SetNumber(int number) { this->number = number; }
 	// 番号取得
-	const int& GetNumber() { return number; }
+	const UINT& GetNumber() { return texNumber; }
 protected: // メンバ変数
 	// 頂点バッファ
 	ComPtr<ID3D12Resource> vertBuffer;

@@ -31,13 +31,11 @@ private: // ƒƒ“ƒo•Ï”
 	Keyboard* keyboard = Keyboard::GetInstance();
 	Controller* controller = Controller::GetInstance();
 	Mouse* mouse = Mouse::GetInstance();
-	Audio* audio = Audio::GetInstance();
 	Camera* camera = Camera::GetInstance();
 
 	// ‰æ‘œ
 	Image2d* result = nullptr;
-
-	float alpha = 1.0f;
 	bool titleFlag = false;
+	bool seFlag = true;
 };
 

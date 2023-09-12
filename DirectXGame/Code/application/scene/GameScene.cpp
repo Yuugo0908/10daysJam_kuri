@@ -40,6 +40,8 @@ void GameScene::Initialize()
 	mouseRightImg->SetPosition({ 1630.0f, 770.0f });
 	mouseRightImg->SetSize(mouseRightImg->GetDataSize() / 2);
 
+	sushi->Initialize();
+
 	// ライトの生成
 	light = Light::Create();
 	// ライトの色を設定
@@ -81,7 +83,7 @@ void GameScene::Update()
 		isClear = true;
 	}
 
-	sushi_list->Update();
+	sushi->Update();
 }
 
 void GameScene::Draw()
@@ -132,7 +134,7 @@ void GameScene::Draw()
 	// 前景画像描画前処理
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
 
-	sushi_list->Draw();
+	sushi->Draw();
 
 	// フェードの描画
 	FadeScene::GetInstance()->Draw();

@@ -98,7 +98,7 @@ void FadeScene::FadeIn(float alpha)
 		this->alpha = alpha;
 		alphaAdd = 0.02f;
 		fadeInEnd = false;
-
+		Audio::GetInstance()->PlayWave("Resources/SE/scene_change.wav", 0, 0.1f);
 		// フェードイン開始
 		fadeState = FadeInPlay;
 	}
@@ -111,7 +111,6 @@ void FadeScene::FadeOut(float alpha)
 		this->alpha = alpha;
 		alphaAdd = 0.02f;
 		fadeOutEnd = false;
-
 		// フェードアウト開始
 		fadeState = FadeOutPlay;
 	}
