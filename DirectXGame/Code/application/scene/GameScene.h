@@ -65,6 +65,5 @@ private: // メンバ変数
 	bool isClear = false;
 	bool isGameOver = false;
 	bool isDrag = false;
-
 	bool sceneChange = false;
 };

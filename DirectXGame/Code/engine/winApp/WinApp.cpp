@@ -6,7 +6,7 @@
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-const wchar_t WinApp::windowClassName[] = L"タイトル";
+const wchar_t WinApp::windowClassName[] = L"4025_すしきゅー";
 
 LRESULT WinApp::WindowProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {

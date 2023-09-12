@@ -1,5 +1,7 @@
 #include "Sushi.h"
 
+int Sushi::score = 0;
+
 Sushi::Sushi()
 {
 	// ネタ表示用
@@ -61,12 +63,16 @@ Sushi* Sushi::GetInstance()
 
 void Sushi::Update()
 {
+	// 出題パターン生成
+	Pattern();
 	// ネタ、シャリ生成
 	MakeNeta();
 	// 寿司生成
 	MakeSushi();
 	// 寿司下駄に置く
 	PutSushi();
+	// 正誤判定
+	Judge();
 	// ドラッグアンドドロップ
 	DragDrop();
 }
@@ -108,6 +114,19 @@ void Sushi::Draw()
 	for (int i = 0; i < geta_3_sushi_list.size(); i++)
 	{
 		geta_3_sushi_list[i]->Draw();
+	}
+
+	for (int i = 0; i < pattern_1.size(); i++)
+	{
+		pattern_1[i]->Draw();
+	}
+	for (int i = 0; i < pattern_2.size(); i++)
+	{
+		pattern_2[i]->Draw();
+	}
+	for (int i = 0; i < pattern_3.size(); i++)
+	{
+		pattern_3[i]->Draw();
 	}
 
 	if ((int)sushi_list.size() != 0)
@@ -364,187 +383,294 @@ void Sushi::PutSushi()
 	{
 		if (isDragNow == false && sushi_getas[j]->GetPosition() < drag_maxPos && sushi_getas[j]->GetPosition() + sushi_getas[j]->GetSize() > drag_minPos)
 		{
+			// 寿司下駄にマグロを置く
 			if (sushiNumber == Image2d::ImgNumber::maguro)
 			{
 				drag_maxPos = {};
 				drag_minPos = {};
-				isPut = true;
-				if (j == 0)
+				if (pattern_1_flag == false && j == 0)
 				{
-					geta_1_number[geta_1_pieces] = Image2d::ImgNumber::maguro;
+					geta_1_number.push_back(Image2d::ImgNumber::maguro);
 					geta_1_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_1_sushi_list[geta_1_pieces]->SetPosition({ geta_1_pos.x + 150 * geta_1_pieces, geta_1_pos.y });
 				}
-				else if (j == 1)
+				else if (pattern_2_flag == false && j == 1)
 				{
-					geta_2_number[geta_2_pieces] = Image2d::ImgNumber::maguro;
+					geta_2_number.push_back(Image2d::ImgNumber::maguro);
 					geta_2_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_2_sushi_list[geta_2_pieces]->SetPosition({ geta_2_pos.x + 150 * geta_2_pieces, geta_2_pos.y });
 				}
-				else if (j == 2)
+				else if (pattern_3_flag == false && j == 2)
 				{
-					geta_3_number[geta_3_pieces] = Image2d::ImgNumber::maguro;
+					geta_3_number.push_back(Image2d::ImgNumber::maguro);
 					geta_3_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_3_sushi_list[geta_3_pieces]->SetPosition({ geta_3_pos.x + 150 * geta_3_pieces, geta_3_pos.y });
 				}
 			}
+			// 寿司下駄にサーモンを置く
 			else if (sushiNumber == Image2d::ImgNumber::samon)
 			{
 				drag_maxPos = {};
 				drag_minPos = {};
-				isPut = true;
-				if (j == 0)
+				if (pattern_1_flag == false && j == 0)
 				{
-					geta_1_number[geta_1_pieces] = Image2d::ImgNumber::samon;
+					geta_1_number.push_back(Image2d::ImgNumber::samon);
 					geta_1_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_1_sushi_list[geta_1_pieces]->SetPosition({ geta_1_pos.x + 150 * geta_1_pieces, geta_1_pos.y });
 				}
-				else if (j == 1)
+				else if (pattern_2_flag == false && j == 1)
 				{
-					geta_2_number[geta_2_pieces] = Image2d::ImgNumber::samon;
+					geta_2_number.push_back(Image2d::ImgNumber::samon);
 					geta_2_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_2_sushi_list[geta_2_pieces]->SetPosition({ geta_2_pos.x + 150 * geta_2_pieces, geta_2_pos.y });
 				}
-				else if (j == 2)
+				else if (pattern_3_flag == false && j == 2)
 				{
-					geta_3_number[geta_3_pieces] = Image2d::ImgNumber::samon;
+					geta_3_number.push_back(Image2d::ImgNumber::samon);
 					geta_3_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_3_sushi_list[geta_3_pieces]->SetPosition({ geta_3_pos.x + 150 * geta_3_pieces, geta_3_pos.y });
 				}
 			}
+			// 寿司下駄にエビを置く
 			else if (sushiNumber == Image2d::ImgNumber::ebi)
 			{
 				drag_maxPos = {};
 				drag_minPos = {};
-				isPut = true;
-				if (j == 0)
+				if (pattern_1_flag == false && j == 0)
 				{
-					geta_1_number[geta_1_pieces] = Image2d::ImgNumber::ebi;
+					geta_1_number.push_back(Image2d::ImgNumber::ebi);
 					geta_1_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_1_sushi_list[geta_1_pieces]->SetPosition({ geta_1_pos.x + 150 * geta_1_pieces, geta_1_pos.y });
 				}
-				else if (j == 1)
+				else if (pattern_2_flag == false && j == 1)
 				{
-					geta_2_number[geta_2_pieces] = Image2d::ImgNumber::ebi;
+					geta_2_number.push_back(Image2d::ImgNumber::ebi);
 					geta_2_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_2_sushi_list[geta_2_pieces]->SetPosition({ geta_2_pos.x + 150 * geta_2_pieces, geta_2_pos.y });
 				}
-				else if (j == 2)
+				else if (pattern_3_flag == false && j == 2)
 				{
-					geta_3_number[geta_3_pieces] = Image2d::ImgNumber::ebi;
+					geta_3_number.push_back(Image2d::ImgNumber::ebi);
 					geta_3_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_3_sushi_list[geta_3_pieces]->SetPosition({ geta_3_pos.x + 150 * geta_3_pieces, geta_3_pos.y });
 				}
 			}
+			// 寿司下駄にタマゴを置く
 			else if (sushiNumber == Image2d::ImgNumber::tamago)
 			{
 				drag_maxPos = {};
 				drag_minPos = {};
-				isPut = true;
-				if (j == 0)
+				if (pattern_1_flag == false && j == 0)
 				{
-					geta_1_number[geta_1_pieces] = Image2d::ImgNumber::tamago;
+					geta_1_number.push_back(Image2d::ImgNumber::tamago);
 					geta_1_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_1_sushi_list[geta_1_pieces]->SetPosition({ geta_1_pos.x + 150 * geta_1_pieces, geta_1_pos.y });
 				}
-				else if (j == 1)
+				else if (pattern_2_flag == false && j == 1)
 				{
-					geta_2_number[geta_2_pieces] = Image2d::ImgNumber::tamago;
+					geta_2_number.push_back(Image2d::ImgNumber::tamago);
 					geta_2_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_2_sushi_list[geta_2_pieces]->SetPosition({ geta_2_pos.x + 150 * geta_2_pieces, geta_2_pos.y });
 				}
-				else if (j == 2)
+				else if (pattern_3_flag == false && j == 2)
 				{
-					geta_3_number[geta_3_pieces] = Image2d::ImgNumber::tamago;
+					geta_3_number.push_back(Image2d::ImgNumber::tamago);
 					geta_3_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_3_sushi_list[geta_3_pieces]->SetPosition({ geta_3_pos.x + 150 * geta_3_pieces, geta_3_pos.y });
 				}
 			}
+			// 寿司下駄にイカを置く
 			else if (sushiNumber == Image2d::ImgNumber::ika)
 			{
 				drag_maxPos = {};
 				drag_minPos = {};
-				isPut = true;
-				if (j == 0)
+				if (pattern_1_flag == false && j == 0)
 				{
-					geta_1_number[geta_1_pieces] = Image2d::ImgNumber::ika;
+					geta_1_number.push_back(Image2d::ImgNumber::ika);
 					geta_1_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_1_sushi_list[geta_1_pieces]->SetPosition({ geta_1_pos.x + 150 * geta_1_pieces, geta_1_pos.y });
 				}
-				else if (j == 1)
+				else if (pattern_2_flag == false && j == 1)
 				{
-					geta_2_number[geta_2_pieces] = Image2d::ImgNumber::ika;
+					geta_2_number.push_back(Image2d::ImgNumber::ika);
 					geta_2_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_2_sushi_list[geta_2_pieces]->SetPosition({ geta_2_pos.x + 150 * geta_2_pieces, geta_2_pos.y });
 				}
-				else if (j == 2)
+				else if (pattern_3_flag == false && j == 2)
 				{
-					geta_3_number[geta_3_pieces] = Image2d::ImgNumber::ika;
+					geta_3_number.push_back(Image2d::ImgNumber::ika);
 					geta_3_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
 					geta_3_sushi_list[geta_3_pieces]->SetPosition({ geta_3_pos.x + 150 * geta_3_pieces, geta_3_pos.y });
 				}
 			}
 
-			if (isPut)
+			if (pattern_1_flag == false && j == 0)
 			{
-				if (j == 0)
-				{
-					geta_1_pieces++;
-				}
-				else if (j == 1)
-				{
-					geta_2_pieces++;
-				}
-				else if (j == 2)
-				{
-					geta_3_pieces++;
-				}
+				geta_1_pieces++;
+				dragNum = 0;
+			}
+			else if (pattern_2_flag == false && j == 1)
+			{
+				geta_2_pieces++;
+				dragNum = 0;
+			}
+			else if (pattern_3_flag == false && j == 2)
+			{
+				geta_3_pieces++;
+				dragNum = 0;
 			}
 		}
 	}
+
 	if (isDragNow == false)
 	{
 		sushiNumber = 0;
-	}
-
-	//TODO 正誤判定はここで行うと良い
-	if (geta_1_pieces >= 3)
-	{
-		geta_1_pieces = 0;
-		geta_1_sushi_list.clear();
-	}
-	if (geta_2_pieces >= 3)
-	{
-		geta_2_pieces = 0;
-		geta_2_sushi_list.clear();
-	}
-	if (geta_3_pieces >= 3)
-	{
-		geta_3_pieces = 0;
-		geta_3_sushi_list.clear();
 	}
 #pragma endregion
 }
 
 void Sushi::Pattern()
 {
+#pragma region 出題パターンの生成
+	// 次の注文を出す
+	if (pattern_1_timer <= 0)
+	{
+		pattern_1.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 760, 400 }));
+		pattern_1.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 900, 400 }));
+		pattern_1.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 1040, 400 }));
+		pattern_1_flag = false;
+		pattern_1_timer = Random::GetRanNum(60, 300);
+	}
+	// 次を出題するまでの待機時間
+	else if(pattern_1_flag == true)
+	{
+		pattern_1.clear();
+		pattern_1_timer--;
+	}
+
+	// 次の注文を出す
+	if (pattern_2_timer <= 0)
+	{
+		pattern_2.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 180, 400 }));
+		pattern_2.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 320, 400 }));
+		pattern_2.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 460, 400 }));
+		pattern_2_flag = false;
+		pattern_2_timer = Random::GetRanNum(60, 300);
+	}
+	// 次を出題するまでの待機時間
+	else if(pattern_2_flag == true)
+	{
+		pattern_2.clear();
+		pattern_2_timer--;
+	}
+
+	// 次の注文を出す
+	if (pattern_3_timer <= 0)
+	{
+		pattern_3.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 1340, 400 }));
+		pattern_3.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 1480, 400 }));
+		pattern_3.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 1620, 400 }));
+		pattern_3_flag = false;
+		pattern_3_timer = Random::GetRanNum(60, 300);
+	}
+	// 次を出題するまでの待機時間
+	else if(pattern_3_flag == true)
+	{
+		pattern_3.clear();
+		pattern_3_timer--;
+	}
+#pragma endregion
 }
 
-void Sushi::SetGeta()
+void Sushi::Judge()
 {
+#pragma region 寿司が3つ置かれたら下駄ごとに正誤判定を行う
+	// 合ってた場合
+	if (geta_1_pieces >= 3)
+	{
+		geta_1_pieces = 0;
+		if (geta_1_number[0] == pattern_1[0]->GetNumber() && geta_1_number[1] == pattern_1[1]->GetNumber() && geta_1_number[2] == pattern_1[2]->GetNumber())
+		{
+			geta_1_number.clear();
+			pattern_1.clear();
+			geta_1_sushi_list.clear(); 
+			pattern_1_flag = true;
+			score += 500;
+		}
+	}
+	if (geta_2_pieces >= 3)
+	{
+		geta_2_pieces = 0;
+		if (geta_2_number[0] == pattern_2[0]->GetNumber() && geta_2_number[1] == pattern_2[1]->GetNumber() && geta_2_number[2] == pattern_2[2]->GetNumber())
+		{
+			geta_2_number.clear();
+			pattern_2.clear();
+			geta_2_sushi_list.clear();
+			pattern_2_flag = true;
+			score += 500;
+		}
+	}
+	if (geta_3_pieces >= 3)
+	{
+		geta_3_pieces = 0;
+		if (geta_3_number[0] == pattern_3[0]->GetNumber() && geta_3_number[1] == pattern_3[1]->GetNumber() && geta_3_number[2] == pattern_3[2]->GetNumber())
+		{
+			geta_3_number.clear();
+			pattern_3.clear();
+			geta_3_sushi_list.clear();
+			pattern_3_flag = true;
+			score += 500;
+		}
+	}
+
+	// 間違えた場合
+	if (geta_1_pieces >= 1)
+	{
+		if (geta_1_number[0] != pattern_1[0]->GetNumber() || geta_1_number[1] != pattern_1[1]->GetNumber() || geta_1_number[2] != pattern_1[2]->GetNumber())
+		{
+			geta_1_pieces = 0;
+			geta_1_number.clear();
+			pattern_1.clear();
+			geta_1_sushi_list.clear();
+			pattern_1_flag = true;
+		}
+	}
+	if (geta_2_pieces >= 1)
+	{
+		if (geta_2_number[0] != pattern_2[0]->GetNumber() || geta_2_number[1] != pattern_2[1]->GetNumber() || geta_2_number[2] != pattern_2[2]->GetNumber())
+		{
+			geta_2_pieces = 0;
+			geta_2_number.clear();
+			pattern_2.clear();
+			geta_2_sushi_list.clear();
+			pattern_2_flag = true;
+		}
+	}
+	if (geta_3_pieces >= 1)
+	{
+		if (geta_3_number[0] != pattern_3[0]->GetNumber() || geta_3_number[1] != pattern_3[1]->GetNumber() || geta_3_number[2] != pattern_3[2]->GetNumber())
+		{
+			geta_3_pieces = 0;
+			geta_3_number.clear();
+			pattern_3.clear();
+			geta_3_sushi_list.clear();
+			pattern_3_flag = true;
+		}
+	}
+#pragma endregion
 }

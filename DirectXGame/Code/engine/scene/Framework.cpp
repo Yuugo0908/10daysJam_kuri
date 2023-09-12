@@ -46,7 +46,7 @@ void Framework::Initialize()
 	}
 
 	// デバッグテキスト用テクスチャ読み込み
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::debugText, "debugfont"))
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::debugText, "font"))
 	{
 		assert(0);
 	}

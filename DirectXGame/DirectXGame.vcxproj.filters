@@ -247,11 +247,11 @@
     <ClCompile Include="Code\application\scene\SceneFactory.cpp">
       <Filter>ソースファイル\application\scene</Filter>
     </ClCompile>
-    <ClCompile Include="Code\application\game\Sushi.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Code\application\game\Rice.cpp">
-      <Filter>ソースファイル</Filter>
+      <Filter>ソースファイル\application\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\application\game\Sushi.cpp">
+      <Filter>ソースファイル\application\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -348,11 +348,14 @@
     <ClInclude Include="Code\SafeDelete.h">
       <Filter>ヘッダーファイル\application</Filter>
     </ClInclude>
-    <ClInclude Include="Code\application\game\Sushi.h">
-      <Filter>ヘッダーファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Code\application\game\Rice.h">
-      <Filter>ヘッダーファイル</Filter>
+      <Filter>ヘッダーファイル\application\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\application\game\Sushi.h">
+      <Filter>ヘッダーファイル\application\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\engine\math\Random.h">
+      <Filter>ヘッダーファイル\engine\math</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

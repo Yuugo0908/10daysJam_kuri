@@ -5,13 +5,12 @@ void GameClearScene::Initialize()
 {
 	// ƒQ[ƒ€ƒNƒŠƒA‰æ‘œ¶¬
 	result = Image2d::Create(Image2d::ImgNumber::result, { 0.0f,0.0f });
-	result->SetSize({ 1280.0f,720.0f });
+	result->SetSize({ 1920.0f,1080.0f });
 }
 
 void GameClearScene::Finalize()
 {
 	safe_delete(result);
-	safe_delete(backGround);
 }
 
 void GameClearScene::Update()
@@ -35,6 +34,11 @@ void GameClearScene::Update()
 			SceneManager::GetInstance()->ChangeScene("Title");
 		}
 	}
+
+	if (FadeScene::fadeOutEnd && !titleFlag)
+	{
+		DebugText::GetInstance()->Print(500, 350, 4, "%d", Sushi::score);
+	}
 }
 
 void GameClearScene::Draw()
@@ -42,8 +46,6 @@ void GameClearScene::Draw()
 #pragma region ”wŒi‰æ‘œ•`‰æ
 	// ”wŒi‰æ‘œ•`‰æ‘Oˆ—
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
-
-	backGround->Draw();
 
 	// ‰æ‘œ•`‰æŒãˆ—
 	Image2d::PostDraw();

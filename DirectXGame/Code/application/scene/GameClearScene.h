@@ -13,6 +13,7 @@
 #include "BaseScene.h"
 #include "FadeScene.h"
 #include "SafeDelete.h"
+#include "Sushi.h"
 
 class GameClearScene : public BaseScene
 {
@@ -35,7 +36,6 @@ private: // ƒƒ“ƒo•Ï”
 
 	// ‰æ‘œ
 	Image2d* result = nullptr;
-	Image2d* backGround = nullptr;
 
 	float alpha = 1.0f;
 	bool titleFlag = false;

@@ -66,13 +66,20 @@ void GameScene::Update()
 
 	if (isClear)
 	{
-		FadeScene::GetInstance()->FadeIn(-5.0f);
+		FadeScene::GetInstance()->FadeIn(0.0f);
 		if (FadeScene::fadeInEnd)
 		{
+			SceneManager::GetInstance()->ChangeScene("GameClear");
 		}
 	}
 
 #pragma endregion
+
+	// TODO タイムアップでリザルト画面に移行
+	if (keyboard->TriggerKey(DIK_SPACE))
+	{
+		isClear = true;
+	}
 
 	sushi_list->Update();
 }

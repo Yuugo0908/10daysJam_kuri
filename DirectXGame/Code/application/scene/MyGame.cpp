@@ -28,7 +28,6 @@ void MyGame::Initialize()
 	{
 		assert(0);
 	}
-
 	// リザルト画像読み込み
 	if (!Image2d::LoadTexture(Image2d::ImgNumber::result, "result"))
 	{
@@ -116,7 +115,8 @@ void MyGame::Initialize()
 	SceneManager::GetInstance()->ChangeScene("Title");
 
 	//現在時刻をマイクロ秒で取得
-	currentTimeMicro = []() {
+	currentTimeMicro = []()
+	{
 		std::chrono::system_clock::duration d = std::chrono::system_clock::now().time_since_epoch();
 		return std::chrono::duration_cast<std::chrono::microseconds>(d).count();
 	};

@@ -4,6 +4,7 @@
 #include "Keyboard.h"
 #include "DebugText.h"
 #include "SafeDelete.h"
+#include "Random.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -21,8 +22,11 @@ public:
 	// 代入演算子を無効化
 	Sushi& operator=(const Sushi& obj) = delete;
 
-public: // 静的メンバ変数
+public: // 静的メンバ関数
 	static Sushi* GetInstance();
+
+public: // 静的メンバ変数
+	static int score;
 
 public: // メンバ関数
 	// 毎フレーム処理
@@ -39,8 +43,8 @@ public: // メンバ関数
 	void PutSushi();
 	// パターン生成
 	void Pattern();
-	// 下駄に置いた寿司の数
-	void SetGeta();
+	// 正誤判定
+	void Judge();
 
 private: // メンバ変数
 	Keyboard* keyboard = Keyboard::GetInstance();
@@ -64,11 +68,9 @@ private: // メンバ変数
 	int geta_2_pieces = 0;
 	int geta_3_pieces = 0;
 	// 下駄に乗せている寿司の番号
-	int geta_1_number[3] = {};
-	int geta_2_number[3] = {};
-	int geta_3_number[3] = {};
-	bool isPut = false;
-	bool isGetaSet = false;
+	std::vector<int> geta_1_number;
+	std::vector<int> geta_2_number;
+	std::vector<int> geta_3_number;
 
 	// 米桶
 	XMFLOAT2 kome_oke_position = { -50.0f, 850.0f };
@@ -103,12 +105,17 @@ private: // メンバ変数
 	Image2d* ika_neta_dis = nullptr;
 
 	// お題用
-	std::vector<Image2d*> pattern;
-	Image2d* maguro_neta_pat = nullptr;
-	Image2d* samon_neta_pat = nullptr;
-	Image2d* ebi_neta_pat = nullptr;
-	Image2d* tamago_neta_pat = nullptr;
-	Image2d* ika_neta_pat = nullptr;
+	std::vector<Image2d*> pattern_1;
+	std::vector<Image2d*> pattern_2;
+	std::vector<Image2d*> pattern_3;
+	// 生成フラグ
+	bool pattern_1_flag = true;
+	bool pattern_2_flag = true;
+	bool pattern_3_flag = true;
+	// 生成までのタイマー
+	int pattern_1_timer = 0;
+	int pattern_2_timer = 0;
+	int pattern_3_timer = 0;
 
 	// シャリ
 	std::vector<Image2d*> shari_list;
