@@ -26,6 +26,8 @@ public: // ƒƒ“ƒoŠÖ”
 	// •`‰æ
 	void Draw() override;
 
+	static bool isTutorial_first;
+
 private: // ƒƒ“ƒo•Ï”
 
 	Keyboard* keyboard = Keyboard::GetInstance();
@@ -37,7 +39,9 @@ private: // ƒƒ“ƒo•Ï”
 
 	// ‰æ‘œ
 	Image2d* title = nullptr;
+	Image2d* tutorial = nullptr;
 
 	float alpha = 0.0f;
-	bool changeFlag = false;
+	bool isChange = false;
+	bool isTutorial = false;
 };

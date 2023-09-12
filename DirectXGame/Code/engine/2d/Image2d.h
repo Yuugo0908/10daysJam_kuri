@@ -29,7 +29,7 @@ public: // サブクラス
 	enum ImgNumber
 	{
 		debugText,
-		title, back_1, back_2, result,
+		title, tutorial, back_1, back_2, result,
 		mouse, mouseLeft, mouseRight,
 		door_right, door_left,
 		people, hukidasi,

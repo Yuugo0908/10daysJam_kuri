@@ -5,6 +5,7 @@
 #include "DebugText.h"
 #include "SafeDelete.h"
 #include "Random.h"
+#include "Audio.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -26,7 +27,7 @@ public: // 静的メンバ関数
 	static Sushi* GetInstance();
 
 public: // 静的メンバ変数
-	static int score;
+	static float score;
 
 public: // メンバ関数
 	// 初期化
@@ -81,7 +82,7 @@ private: // メンバ変数
 	bool isPut_3 = false;
 
 	// 米桶
-	const XMFLOAT2 kome_oke_position = { -50.0f, 850.0f };
+	const XMFLOAT2 kome_oke_position = { 150.0f, 850.0f };
 	Image2d* kome_oke = nullptr;
 
 	//寿司一覧
@@ -121,9 +122,16 @@ private: // メンバ変数
 	bool pattern_2_flag = true;
 	bool pattern_3_flag = true;
 	// 生成までのタイマー
-	int pattern_1_timer = 0;
-	int pattern_2_timer = 0;
-	int pattern_3_timer = 0;
+	int pattern_1_timer = 30;
+	int pattern_2_timer = Random::GetRanNum(300, 600);
+	int pattern_3_timer = Random::GetRanNum(900, 1200);
+	// 注文が変わるまでのタイマー
+	int wait_timer_1 = 1200;
+	int wait_timer_2 = 1200;
+	int wait_timer_3 = 1200;
+	// スコアボーナス
+	float combo_bonus = 1.0f;
+	int time_bonus = 0;
 
 	// シャリ
 	std::vector<Image2d*> shari_list;

@@ -41,7 +41,7 @@ void GameClearScene::Update()
 	{
 		if (!titleFlag)
 		{
-			DebugText::GetInstance()->Print(500, 350, 4, "%d", Sushi::score);
+			DebugText::GetInstance()->Print(500, 350, 4, "%d", (int)Sushi::score);
 		}
 		if (seFlag)
 		{

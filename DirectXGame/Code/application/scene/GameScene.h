@@ -64,4 +64,6 @@ private: // メンバ変数
 	bool isGameOver = false;
 	bool isDrag = false;
 	bool sceneChange = false;
+
+	int clear_timer = 60 * 90;
 };

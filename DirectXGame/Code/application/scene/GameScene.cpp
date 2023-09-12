@@ -71,6 +71,7 @@ void GameScene::Update()
 		FadeScene::GetInstance()->FadeIn(0.0f);
 		if (FadeScene::fadeInEnd)
 		{
+			clear_timer = 60 * 90;
 			SceneManager::GetInstance()->ChangeScene("GameClear");
 		}
 	}
@@ -78,9 +79,13 @@ void GameScene::Update()
 #pragma endregion
 
 	// TODO タイムアップでリザルト画面に移行
-	if (keyboard->TriggerKey(DIK_SPACE))
+	if (clear_timer <= 0)
 	{
 		isClear = true;
+	}
+	else
+	{
+		clear_timer--;
 	}
 
 	sushi->Update();

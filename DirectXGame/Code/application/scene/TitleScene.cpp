@@ -2,11 +2,15 @@
 #include <cassert>
 #include "SceneManager.h"
 
+bool TitleScene::isTutorial_first = false;
+
 void TitleScene::Initialize()
 {
 	// タイトル画像生成
 	title = Image2d::Create(Image2d::ImgNumber::title, { 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });
 	title->SetSize({ 1920.0f,1080.0f });
+	tutorial = Image2d::Create(Image2d::ImgNumber::tutorial, { 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });
+	tutorial->SetSize({ 1920.0f,1080.0f });
 
 	// ライトの生成
 	light = Light::Create();
@@ -14,6 +18,8 @@ void TitleScene::Initialize()
 	light->SetLightColor({ 1.0f, 1.0f, 1.0f });
 	// 3Dオブジェクトにライトをセット
 	Object3d::SetLight(light);
+
+	// TODO シフトで説明を表示できる案内を作る
 }
 
 void TitleScene::Finalize()
@@ -23,17 +29,27 @@ void TitleScene::Finalize()
 
 void TitleScene::Update()
 {
-	if (!changeFlag)
+	if (!isChange)
 	{
 		FadeScene::GetInstance()->FadeOut(1.0f);
 	}
 
 	if (FadeScene::fadeOutEnd && keyboard->TriggerKey(DIK_SPACE))
 	{
-		changeFlag = true;
+		if (isTutorial == false && isTutorial_first == false)
+		{
+			isTutorial = true;
+			isTutorial_first = true;
+			return;
+		}
+
+		if (isChange == false)
+		{
+			isChange = true;
+		}
 	}
 
-	if (changeFlag)
+	if (isChange)
 	{
 		FadeScene::GetInstance()->FadeIn(0.0f);
 		if (FadeScene::fadeInEnd)
@@ -50,6 +66,11 @@ void TitleScene::Draw()
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
 
 	title->Draw();
+
+	if (isTutorial && isTutorial_first)
+	{
+		tutorial->Draw();
+	}
 
 	// 画像描画後処理
 	Image2d::PostDraw();

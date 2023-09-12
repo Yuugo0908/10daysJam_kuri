@@ -11,6 +11,11 @@ void MyGame::Initialize()
 	{
 		assert(0);
 	}
+	// 説明画像読み込み
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::tutorial, "tutorial"))
+	{
+		assert(0);
+	}
 	// 背景画像読み込み
 	if (!Image2d::LoadTexture(Image2d::ImgNumber::back_1, "backGround_1"))
 	{
@@ -108,6 +113,9 @@ void MyGame::Initialize()
 	{
 		assert(0);
 	}
+
+	// BGMの再生
+	Audio::GetInstance()->PlayWave("Resources/BGM/bgm.wav", 255, 0.03f);
 
 	// シーンファクトリーを生成し、マネージャーにセット
 	sceneFactory_ = new SceneFactory();

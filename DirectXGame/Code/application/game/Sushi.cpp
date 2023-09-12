@@ -1,6 +1,6 @@
 #include "Sushi.h"
 
-int Sushi::score = 0;
+float Sushi::score = 0;
 
 Sushi::Sushi()
 {
@@ -55,6 +55,9 @@ void Sushi::Initialize()
 	sushi_getas.push_back(sushi_geta_1);
 	sushi_getas.push_back(sushi_geta_2);
 	sushi_getas.push_back(sushi_geta_3);
+
+	// スコアリセット
+	score = 0;
 }
 
 void Sushi::Update()
@@ -177,8 +180,15 @@ void Sushi::Finalize()
 	pattern_3_flag = true;
 	// 生成までのタイマー
 	pattern_1_timer = 0;
-	pattern_2_timer = 0;
-	pattern_3_timer = 0;
+	pattern_2_timer = 600;
+	pattern_3_timer = 1200;
+	// 注文が変わるまでのタイマー
+	wait_timer_1 = 1200;
+	wait_timer_2 = 1200;
+	wait_timer_3 = 1200;
+	// スコアボーナス
+	combo_bonus = 1.0f;
+	time_bonus = 0;
 
 	// シャリ
 	shari_list.clear();
@@ -604,11 +614,22 @@ void Sushi::Pattern()
 		pattern_1.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 900, 400 }));
 		pattern_1.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 1040, 400 }));
 		pattern_1_flag = false;
-		pattern_1_timer = Random::GetRanNum(60, 300);
+		pattern_1_timer = Random::GetRanNum(600, 1200);
 	}
 	// 次を出題するまでの待機時間
-	else if(pattern_1_flag == true)
+	else if(pattern_1_flag == true || wait_timer_1 <= 0)
 	{
+		if (wait_timer_1 <= 0)
+		{
+			geta_1_pieces = 0;
+			geta_1_number.clear();
+			geta_1_sushi_list.clear();
+			combo_bonus = 1.0f;
+			pattern_1_timer = 120;
+			pattern_1_flag = true;
+			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
+		}
+		wait_timer_1 = 1200;
 		pattern_1.clear();
 		pattern_1_timer--;
 	}
@@ -620,11 +641,22 @@ void Sushi::Pattern()
 		pattern_2.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 320, 400 }));
 		pattern_2.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 460, 400 }));
 		pattern_2_flag = false;
-		pattern_2_timer = Random::GetRanNum(60, 300);
+		pattern_2_timer = Random::GetRanNum(600, 1200);
 	}
 	// 次を出題するまでの待機時間
-	else if(pattern_2_flag == true)
+	else if (pattern_2_flag == true || wait_timer_2 <= 0)
 	{
+		if (wait_timer_2 <= 0)
+		{
+			geta_2_pieces = 0;
+			geta_2_number.clear();
+			geta_2_sushi_list.clear();
+			combo_bonus = 1.0f;
+			pattern_2_timer = 120;
+			pattern_2_flag = true;
+			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
+		}
+		wait_timer_2 = 1200;
 		pattern_2.clear();
 		pattern_2_timer--;
 	}
@@ -636,13 +668,37 @@ void Sushi::Pattern()
 		pattern_3.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 1480, 400 }));
 		pattern_3.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 1620, 400 }));
 		pattern_3_flag = false;
-		pattern_3_timer = Random::GetRanNum(60, 300);
+		pattern_3_timer = Random::GetRanNum(600, 1200);
 	}
 	// 次を出題するまでの待機時間
-	else if(pattern_3_flag == true)
+	else if (pattern_3_flag == true || wait_timer_3 <= 0)
 	{
+		if (wait_timer_3 <= 0)
+		{
+			geta_3_pieces = 0;
+			geta_3_number.clear();
+			geta_3_sushi_list.clear();
+			combo_bonus = 1.0f;
+			pattern_3_timer = 120;
+			pattern_3_flag = true;
+			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
+		}
+		wait_timer_3 = 1200;
 		pattern_3.clear();
 		pattern_3_timer--;
+	}
+
+	if (pattern_1_flag == false)
+	{
+		wait_timer_1--;
+	}
+	if (pattern_2_flag == false)
+	{
+		wait_timer_2--;
+	}
+	if (pattern_3_flag == false)
+	{
+		wait_timer_3--;
 	}
 #pragma endregion
 }
@@ -661,7 +717,10 @@ void Sushi::Judge()
 			geta_1_number.clear();
 			pattern_1.clear();
 			geta_1_sushi_list.clear();
+			pattern_1_timer = 120;
 			pattern_1_flag = true;
+			combo_bonus = 1.0f;
+			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
 			return;
 		}
 		else
@@ -679,7 +738,10 @@ void Sushi::Judge()
 			geta_2_number.clear();
 			pattern_2.clear();
 			geta_2_sushi_list.clear();
+			pattern_2_timer = 120;
 			pattern_2_flag = true;
+			combo_bonus = 1.0f;
+			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
 			return;
 		}
 		else
@@ -697,7 +759,10 @@ void Sushi::Judge()
 			geta_3_number.clear();
 			pattern_3.clear();
 			geta_3_sushi_list.clear();
+			pattern_3_timer = 120;
 			pattern_3_flag = true;
+			combo_bonus = 1.0f;
+			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
 			return;
 		}
 		else
@@ -716,7 +781,11 @@ void Sushi::Judge()
 			pattern_1.clear();
 			geta_1_sushi_list.clear(); 
 			pattern_1_flag = true;
-			score += 500;
+			time_bonus = wait_timer_1;
+			score += (500.0f + time_bonus) * combo_bonus;
+			combo_bonus += 0.1f;
+			time_bonus = 0;
+			Audio::GetInstance()->PlayWave("Resources/SE/correct.wav", 0, 0.1f);
 			return;
 		}
 	}
@@ -729,7 +798,11 @@ void Sushi::Judge()
 			pattern_2.clear();
 			geta_2_sushi_list.clear();
 			pattern_2_flag = true;
-			score += 500;
+			time_bonus = wait_timer_2;
+			score += (500.0f + time_bonus) * combo_bonus;
+			combo_bonus += 0.1f;
+			time_bonus = 0;
+			Audio::GetInstance()->PlayWave("Resources/SE/correct.wav", 0, 0.1f);
 			return;
 		}
 	}
@@ -742,7 +815,11 @@ void Sushi::Judge()
 			pattern_3.clear();
 			geta_3_sushi_list.clear();
 			pattern_3_flag = true;
-			score += 500;
+			time_bonus = wait_timer_3;
+			score += (500.0f + time_bonus) * combo_bonus;
+			combo_bonus += 0.1f;
+			time_bonus = 0;
+			Audio::GetInstance()->PlayWave("Resources/SE/correct.wav", 0, 0.1f);
 			return;
 		}
 	}
