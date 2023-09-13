@@ -109,7 +109,8 @@ XMFLOAT2 Mouse::GetMousePos()
 
 	SetRect(&rcClient, ptClientUL.x, ptClientUL.y, ptClientLR.x, ptClientLR.y);
 
-	XMFLOAT2 cursorPos = { (float)po.x - ptClientUL.x, (float)po.y - ptClientUL.y };
+	XMFLOAT2 cursorPos = { (float)po.x * WinApp::window_width / rcClient.right + WinApp::window_width / rcClient.right,
+							(float)po.y * WinApp::window_height / rcClient.bottom + WinApp::window_height / rcClient.bottom };
 	return cursorPos;
 }
 

@@ -21,54 +21,30 @@ Sushi* Sushi::GetInstance()
 void Sushi::Initialize()
 {
 	// ネタ表示用
-	maguro_neta_dis = Image2d::Create(Image2d::ImgNumber::maguro_neta, { 0.0f, 0.0f });
-	maguro_neta_dis->SetPosition(maguro_neta_position);
-	maguro_neta_dis->SetSize(maguro_neta_dis->GetDataSize());
-	samon_neta_dis = Image2d::Create(Image2d::ImgNumber::samon_neta, { 0.0f, 0.0f });
-	samon_neta_dis->SetPosition(samon_neta_position);
-	samon_neta_dis->SetSize(samon_neta_dis->GetDataSize());
-	ebi_neta_dis = Image2d::Create(Image2d::ImgNumber::ebi_neta, { 0.0f, 0.0f });
-	ebi_neta_dis->SetPosition(ebi_neta_position);
-	ebi_neta_dis->SetSize(ebi_neta_dis->GetDataSize());
-	tamago_neta_dis = Image2d::Create(Image2d::ImgNumber::tamago_neta, { 0.0f, 0.0f });
-	tamago_neta_dis->SetPosition(tamago_neta_position);
-	tamago_neta_dis->SetSize(tamago_neta_dis->GetDataSize());
-	ika_neta_dis = Image2d::Create(Image2d::ImgNumber::ika_neta, { 0.0f, 0.0f });
-	ika_neta_dis->SetPosition(ika_neta_position);
-	ika_neta_dis->SetSize(ika_neta_dis->GetDataSize());
+	maguro_neta_dis = Image2d::Create(Image2d::ImgNumber::maguro_neta, maguro_neta_position);
+	samon_neta_dis = Image2d::Create(Image2d::ImgNumber::samon_neta, samon_neta_position);
+	ebi_neta_dis = Image2d::Create(Image2d::ImgNumber::ebi_neta, ebi_neta_position);
+	tamago_neta_dis = Image2d::Create(Image2d::ImgNumber::tamago_neta, tamago_neta_position);
+	ika_neta_dis = Image2d::Create(Image2d::ImgNumber::ika_neta, ika_neta_position);
 
 	// 米桶
-	kome_oke = Image2d::Create(Image2d::ImgNumber::kome_oke, { 0.0f, 0.0f });
-	kome_oke->SetPosition(kome_oke_position);
-	kome_oke->SetSize(kome_oke->GetDataSize());
+	kome_oke = Image2d::Create(Image2d::ImgNumber::kome_oke, kome_oke_position);
 
 	// 寿司下駄
-	sushi_geta_1 = Image2d::Create(Image2d::ImgNumber::sushi_geta, { 0.0f, 0.0f });
-	sushi_geta_1->SetPosition(geta_1_pos);
-	sushi_geta_1->SetSize(sushi_geta_1->GetDataSize());
-	sushi_geta_2 = Image2d::Create(Image2d::ImgNumber::sushi_geta, { 0.0f, 0.0f });
-	sushi_geta_2->SetPosition(geta_2_pos);
-	sushi_geta_2->SetSize(sushi_geta_2->GetDataSize());
-	sushi_geta_3 = Image2d::Create(Image2d::ImgNumber::sushi_geta, { 0.0f, 0.0f });
-	sushi_geta_3->SetPosition(geta_3_pos);
-	sushi_geta_3->SetSize(sushi_geta_3->GetDataSize());
+	sushi_geta_1 = Image2d::Create(Image2d::ImgNumber::sushi_geta, geta_1_pos);
+	sushi_geta_2 = Image2d::Create(Image2d::ImgNumber::sushi_geta, geta_2_pos);
+	sushi_geta_3 = Image2d::Create(Image2d::ImgNumber::sushi_geta, geta_3_pos);
 	sushi_getas.push_back(sushi_geta_1);
 	sushi_getas.push_back(sushi_geta_2);
 	sushi_getas.push_back(sushi_geta_3);
 
 	// タイマー表示
 	wait_bar_1 = Image2d::Create(Image2d::ImgNumber::wait_bar, { 760.0f,750.0f });
-	wait_bar_1->SetSize(wait_bar_1->GetDataSize());
 	wait_bar_2 = Image2d::Create(Image2d::ImgNumber::wait_bar, { 175.0f,750.0f });
-	wait_bar_2->SetSize(wait_bar_2->GetDataSize());
 	wait_bar_3 = Image2d::Create(Image2d::ImgNumber::wait_bar, { 1345.0f,750.0f });
-	wait_bar_3->SetSize(wait_bar_3->GetDataSize());
 	wait_gauge_1 = Image2d::Create(Image2d::ImgNumber::wait_gauge, { 835.0f,752.0f });
-	wait_gauge_1->SetSize(wait_gauge_1->GetDataSize());
 	wait_gauge_2 = Image2d::Create(Image2d::ImgNumber::wait_gauge, { 250.0f,752.0f });
-	wait_gauge_2->SetSize(wait_gauge_2->GetDataSize());
 	wait_gauge_3 = Image2d::Create(Image2d::ImgNumber::wait_gauge, { 1415.0f,752.0f });
-	wait_gauge_3->SetSize(wait_gauge_3->GetDataSize());
 
 	// スコア表示背景
 	score_back = Image2d::Create(Image2d::ImgNumber::score_back, { 50.0f, 20.0f });
@@ -350,7 +326,6 @@ void Sushi::MakeNeta()
 	{
 		maguro_neta = Image2d::Create(Image2d::ImgNumber::maguro_neta, { 0.0f, 0.0f });
 		maguro_neta->SetPosition(maguro_neta_position);
-		maguro_neta->SetSize(maguro_neta->GetDataSize());
 		sushi_list.push_back(maguro_neta);
 	}
 	// サーモン生成
@@ -360,7 +335,6 @@ void Sushi::MakeNeta()
 	{
 		samon_neta = Image2d::Create(Image2d::ImgNumber::samon_neta, { 0.0f, 0.0f });
 		samon_neta->SetPosition(samon_neta_position);
-		samon_neta->SetSize(samon_neta->GetDataSize());
 		sushi_list.push_back(samon_neta);
 	}
 	// エビ生成
@@ -370,7 +344,6 @@ void Sushi::MakeNeta()
 	{
 		ebi_neta = Image2d::Create(Image2d::ImgNumber::ebi_neta, { 0.0f, 0.0f });
 		ebi_neta->SetPosition(ebi_neta_position);
-		ebi_neta->SetSize(ebi_neta->GetDataSize());
 		sushi_list.push_back(ebi_neta);
 	}
 	// タマゴ生成
@@ -380,7 +353,6 @@ void Sushi::MakeNeta()
 	{
 		tamago_neta = Image2d::Create(Image2d::ImgNumber::tamago_neta, { 0.0f, 0.0f });
 		tamago_neta->SetPosition(tamago_neta_position);
-		tamago_neta->SetSize(tamago_neta->GetDataSize());
 		sushi_list.push_back(tamago_neta);
 	}
 	// イカ生成
@@ -390,7 +362,6 @@ void Sushi::MakeNeta()
 	{
 		ika_neta = Image2d::Create(Image2d::ImgNumber::ika_neta, { 0.0f, 0.0f });
 		ika_neta->SetPosition(ika_neta_position);
-		ika_neta->SetSize(ika_neta->GetDataSize());
 		sushi_list.push_back(ika_neta);
 	}
 
@@ -401,7 +372,6 @@ void Sushi::MakeNeta()
 	{
 		shari = Image2d::Create(Image2d::ImgNumber::shari, { 0.0f, 0.0f });
 		shari->SetPosition(mouse->GetMousePos() - shari->GetDataSize() / 2);
-		shari->SetSize(shari->GetDataSize());
 		shariNumber = shari->GetNumber();
 		shari_list.push_back(shari);
 	}
@@ -420,7 +390,6 @@ void Sushi::MakeSushi()
 				shari_list.erase(shari_list.begin() + j);
 				maguro = Image2d::Create(Image2d::ImgNumber::maguro, { 0.0f, 0.0f });
 				maguro->SetPosition(mouse->GetMousePos() - maguro->GetDataSize() / 2);
-				maguro->SetSize(maguro->GetDataSize());
 				sushi_list.push_back(maguro);
 				drag_maxPos = {};
 				drag_minPos = {};
@@ -431,7 +400,6 @@ void Sushi::MakeSushi()
 				shari_list.erase(shari_list.begin() + j);
 				samon = Image2d::Create(Image2d::ImgNumber::samon, { 0.0f, 0.0f });
 				samon->SetPosition(mouse->GetMousePos() - samon->GetDataSize() / 2);
-				samon->SetSize(samon->GetDataSize());
 				sushi_list.push_back(samon);
 				drag_maxPos = {};
 				drag_minPos = {};
@@ -442,7 +410,6 @@ void Sushi::MakeSushi()
 				shari_list.erase(shari_list.begin() + j);
 				ebi = Image2d::Create(Image2d::ImgNumber::ebi, { 0.0f, 0.0f });
 				ebi->SetPosition(mouse->GetMousePos() - ebi->GetDataSize() / 2);
-				ebi->SetSize(ebi->GetDataSize());
 				sushi_list.push_back(ebi);
 				drag_maxPos = {};
 				drag_minPos = {};
@@ -453,7 +420,6 @@ void Sushi::MakeSushi()
 				shari_list.erase(shari_list.begin() + j);
 				tamago = Image2d::Create(Image2d::ImgNumber::tamago, { 0.0f, 0.0f });
 				tamago->SetPosition(mouse->GetMousePos() - tamago->GetDataSize() / 2);
-				tamago->SetSize(tamago->GetDataSize());
 				sushi_list.push_back(tamago);
 				drag_maxPos = {};
 				drag_minPos = {};
@@ -464,7 +430,6 @@ void Sushi::MakeSushi()
 				shari_list.erase(shari_list.begin() + j);
 				ika = Image2d::Create(Image2d::ImgNumber::ika, { 0.0f, 0.0f });
 				ika->SetPosition(mouse->GetMousePos() - ika->GetDataSize() / 2);
-				ika->SetSize(ika->GetDataSize());
 				sushi_list.push_back(ika);
 				drag_maxPos = {};
 				drag_minPos = {};
@@ -649,7 +614,7 @@ void Sushi::Pattern()
 		pattern_1.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 900, 400 }));
 		pattern_1.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 1040, 400 }));
 		pattern_1_flag = false;
-		pattern_1_timer = Random::GetRanNum(600, 1200);
+		pattern_1_timer = Random::GetRanNum(600, 900);
 	}
 	// 次を出題するまでの待機時間
 	else if(pattern_1_flag == true || wait_timer_1 <= 0)
@@ -678,7 +643,7 @@ void Sushi::Pattern()
 		pattern_2.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 320, 400 }));
 		pattern_2.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 460, 400 }));
 		pattern_2_flag = false;
-		pattern_2_timer = Random::GetRanNum(600, 1200);
+		pattern_2_timer = Random::GetRanNum(600, 900);
 	}
 	// 次を出題するまでの待機時間
 	else if (pattern_2_flag == true || wait_timer_2 <= 0)
@@ -707,7 +672,7 @@ void Sushi::Pattern()
 		pattern_3.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 1480, 400 }));
 		pattern_3.push_back(Image2d::Create(Random::GetRanNum(Image2d::ImgNumber::maguro, Image2d::ImgNumber::ika), { 1620, 400 }));
 		pattern_3_flag = false;
-		pattern_3_timer = Random::GetRanNum(600, 1200);
+		pattern_3_timer = Random::GetRanNum(600, 900);
 	}
 	// 次を出題するまでの待機時間
 	else if (pattern_3_flag == true || wait_timer_3 <= 0)

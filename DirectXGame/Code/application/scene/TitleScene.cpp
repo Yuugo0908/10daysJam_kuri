@@ -7,12 +7,9 @@ bool TitleScene::isTutorial_first = false;
 void TitleScene::Initialize()
 {
 	// タイトル画像生成
-	title = Image2d::Create(Image2d::ImgNumber::title, { 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });
-	title->SetSize({ 1920.0f,1080.0f });
-	tutorial = Image2d::Create(Image2d::ImgNumber::tutorial, { 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });
-	tutorial->SetSize({ 1920.0f,1080.0f });
+	title = Image2d::Create(Image2d::ImgNumber::title, { 0.0f, 0.0f });
+	tutorial = Image2d::Create(Image2d::ImgNumber::tutorial, { 0.0f, 0.0f });
 	space = Image2d::Create(Image2d::ImgNumber::space_key, { 690.0f, 950.0f });
-	space->SetSize(space->GetDataSize());
 
 	// ライトの生成
 	light = Light::Create();
@@ -31,6 +28,9 @@ void TitleScene::Finalize()
 
 void TitleScene::Update()
 {
+	// マウスの移動範囲の制限
+	mouse->CursorLimit();
+
 	if (!isChange)
 	{
 		FadeScene::GetInstance()->FadeOut(1.0f);

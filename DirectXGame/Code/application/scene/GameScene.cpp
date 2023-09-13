@@ -11,11 +11,7 @@ void GameScene::Initialize()
 	// 画像の生成
 	// 背景画像生成
 	backGround_1 = Image2d::Create(Image2d::ImgNumber::back_1, { 0.0f,0.0f });
-	backGround_1->SetSize({ 1920.0f,1080.0f });
-	backGround_1->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 	backGround_2 = Image2d::Create(Image2d::ImgNumber::back_2, { 0.0f,0.0f });
-	backGround_2->SetSize({ 1920.0f,1080.0f });
-	backGround_2->SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
 
 	people_1 = Image2d::Create(Image2d::ImgNumber::people, { 80.0f,120.0f });
 	people_1->SetSize({ 600.0f, 450.0f });
