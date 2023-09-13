@@ -659,9 +659,11 @@ void Sushi::Pattern()
 			geta_1_pieces = 0;
 			geta_1_number.clear();
 			geta_1_sushi_list.clear();
-			combo_bonus = 1;
 			pattern_1_timer = 120;
 			pattern_1_flag = true;
+			combo_bonus = 1;
+			correct_count_1 = 0;
+			isCorrect_list_1 = { 0, 0, 0 };
 			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
 		}
 		wait_timer_1 = 1200;
@@ -686,9 +688,11 @@ void Sushi::Pattern()
 			geta_2_pieces = 0;
 			geta_2_number.clear();
 			geta_2_sushi_list.clear();
-			combo_bonus = 1;
 			pattern_2_timer = 120;
 			pattern_2_flag = true;
+			combo_bonus = 1;
+			correct_count_2 = 0;
+			isCorrect_list_2 = { 0, 0, 0 };
 			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
 		}
 		wait_timer_2 = 1200;
@@ -713,9 +717,11 @@ void Sushi::Pattern()
 			geta_3_pieces = 0;
 			geta_3_number.clear();
 			geta_3_sushi_list.clear();
-			combo_bonus = 1;
 			pattern_3_timer = 120;
 			pattern_3_flag = true;
+			combo_bonus = 1;
+			correct_count_3 = 0;
+			isCorrect_list_3 = { 0, 0, 0 };
 			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
 		}
 		wait_timer_3 = 1200;
