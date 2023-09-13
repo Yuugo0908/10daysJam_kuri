@@ -17,7 +17,9 @@ void GameClearScene::Finalize()
 
 void GameClearScene::Update()
 {
-	ClipCursor(NULL);
+	// ƒ}ƒEƒX‚ÌˆÚ“®”ÍˆÍ‚Ì§ŒÀ
+	mouse->CursorLimit();
+
 	if (!titleFlag)
 	{
 		FadeScene::GetInstance()->FadeOut(1.0f);
