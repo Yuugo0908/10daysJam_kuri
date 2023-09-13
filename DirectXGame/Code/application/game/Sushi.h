@@ -27,7 +27,7 @@ public: // 静的メンバ関数
 	static Sushi* GetInstance();
 
 public: // 静的メンバ変数
-	static float score;
+	static int score;
 
 public: // メンバ関数
 	// 初期化
@@ -137,12 +137,15 @@ private: // メンバ変数
 	int wait_timer_2 = 1200;
 	int wait_timer_3 = 1200;
 	// スコアボーナス
-	float combo_bonus = 1.0f;
+	int combo_bonus = 1;
 	int time_bonus = 0;
 
 	// シャリ
 	std::vector<Image2d*> shari_list;
 	Image2d* shari = nullptr;
+
+	// スコア表示用
+	Image2d* score_back = nullptr;
 
 	// ドラッグしている画像データ取得用
 	Image2d* dragData = nullptr;

@@ -30,19 +30,9 @@ void GameScene::Initialize()
 	hukidasi_3 = Image2d::Create(Image2d::ImgNumber::hukidasi, { 1240.0f,140.0f });
 	hukidasi_3->SetSize({ 600.0f, 450.0f });
 
-	mouseImg = Image2d::Create(Image2d::ImgNumber::mouse, { 0.0f, 0.0f });
-	mouseImg->SetPosition({ 1630.0f, 770.0f });
-	mouseImg->SetSize(mouseImg->GetDataSize() / 2);
-	mouseLeftImg = Image2d::Create(Image2d::ImgNumber::mouseLeft, { 0.0f, 0.0f });
-	mouseLeftImg->SetPosition({ 1630.0f, 770.0f });
-	mouseLeftImg->SetSize(mouseLeftImg->GetDataSize() / 2);
-	mouseRightImg = Image2d::Create(Image2d::ImgNumber::mouseRight, { 0.0f, 0.0f });
-	mouseRightImg->SetPosition({ 1630.0f, 770.0f });
-	mouseRightImg->SetSize(mouseRightImg->GetDataSize() / 2);
-
-	time_bar = Image2d::Create(Image2d::ImgNumber::time_bar, { 10.0f, 10.0f });
+	time_bar = Image2d::Create(Image2d::ImgNumber::time_bar, { 1840.0f, 200.0f });
 	time_bar->SetSize({ 64.0f, 600.0f });
-	time_gauge = Image2d::Create(Image2d::ImgNumber::time_gauge, { 12.0f, 610.0f });
+	time_gauge = Image2d::Create(Image2d::ImgNumber::time_gauge, { 1842.0f, 800.0f });
 	time_gauge->SetSize({ 60.0f, (float)clear_timer / 9.0f });
 	time_gauge->SetIsFlipY(true);
 
@@ -67,7 +57,7 @@ void GameScene::Update()
 	mouse->CursorLimit();
 
 #pragma region フェードアウト
-	if (!isClear && !isGameOver)
+	if (!isClear)
 	{
 		FadeScene::GetInstance()->FadeOut(1.0f);
 	}
@@ -82,10 +72,15 @@ void GameScene::Update()
 		}
 	}
 
+	if (FadeScene::fadeOutEnd && !isClear)
+	{
+		DebugText::GetInstance()->Print(90.0f, 20.0f, 2.0f, "%d", Sushi::score);
+	}
+
 #pragma endregion
 
 	// TODO タイムアップでリザルト画面に移行
-	if (clear_timer <= 0)
+	if (clear_timer <= 0 || keyboard->TriggerKey(DIK_SPACE))
 	{
 		isClear = true;
 	}

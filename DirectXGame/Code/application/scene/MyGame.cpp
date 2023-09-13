@@ -47,19 +47,6 @@ void MyGame::Initialize()
 	{
 		assert(0);
 	}
-	// チュートリアル用画像の読み込み
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::mouse, "mouse"))
-	{
-		assert(0);
-	}
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::mouseLeft, "mouse_left"))
-	{
-		assert(0);
-	}
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::mouseRight, "mouse_right"))
-	{
-		assert(0);
-	}
 	// 寿司画像の読み込み
 	if (!Image2d::LoadTexture(Image2d::ImgNumber::kome_oke, "kome_oke"))
 	{
@@ -126,6 +113,10 @@ void MyGame::Initialize()
 		assert(0);
 	}
 	if (!Image2d::LoadTexture(Image2d::ImgNumber::time_gauge, "time_gauge"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::score_back, "score_back"))
 	{
 		assert(0);
 	}
