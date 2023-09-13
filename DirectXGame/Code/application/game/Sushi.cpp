@@ -227,6 +227,18 @@ void Sushi::Finalize()
 	// スコアボーナス
 	combo_bonus = 1;
 	time_bonus = 0;
+	// 正誤判定用
+	isCorrect_1 = false;
+	isCorrect_2 = false;
+	isCorrect_3 = false;
+	// 寿司が合っている数
+	correct_count_1 = 0;
+	correct_count_2 = 0;
+	correct_count_3 = 0;
+	// 前に置いた寿司のフラグ
+	isCorrect_list_1 = {0, 0, 0};
+	isCorrect_list_2 = {0, 0, 0};
+	isCorrect_list_3 = {0, 0, 0};
 
 	// シャリ
 	shari_list.clear();
@@ -491,21 +503,18 @@ void Sushi::PutSushi()
 					geta_1_number.push_back(Image2d::ImgNumber::maguro);
 					geta_1_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_1_sushi_list[geta_1_pieces]->SetPosition({ geta_1_pos.x + 150 * geta_1_pieces, geta_1_pos.y });
 				}
 				else if (pattern_2_flag == false && j == 1)
 				{
 					geta_2_number.push_back(Image2d::ImgNumber::maguro);
 					geta_2_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_2_sushi_list[geta_2_pieces]->SetPosition({ geta_2_pos.x + 150 * geta_2_pieces, geta_2_pos.y });
 				}
 				else if (pattern_3_flag == false && j == 2)
 				{
 					geta_3_number.push_back(Image2d::ImgNumber::maguro);
 					geta_3_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_3_sushi_list[geta_3_pieces]->SetPosition({ geta_3_pos.x + 150 * geta_3_pieces, geta_3_pos.y });
 				}
 			}
 			// 寿司下駄にサーモンを置く
@@ -518,21 +527,18 @@ void Sushi::PutSushi()
 					geta_1_number.push_back(Image2d::ImgNumber::samon);
 					geta_1_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_1_sushi_list[geta_1_pieces]->SetPosition({ geta_1_pos.x + 150 * geta_1_pieces, geta_1_pos.y });
 				}
 				else if (pattern_2_flag == false && j == 1)
 				{
 					geta_2_number.push_back(Image2d::ImgNumber::samon);
 					geta_2_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_2_sushi_list[geta_2_pieces]->SetPosition({ geta_2_pos.x + 150 * geta_2_pieces, geta_2_pos.y });
 				}
 				else if (pattern_3_flag == false && j == 2)
 				{
 					geta_3_number.push_back(Image2d::ImgNumber::samon);
 					geta_3_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_3_sushi_list[geta_3_pieces]->SetPosition({ geta_3_pos.x + 150 * geta_3_pieces, geta_3_pos.y });
 				}
 			}
 			// 寿司下駄にエビを置く
@@ -545,21 +551,18 @@ void Sushi::PutSushi()
 					geta_1_number.push_back(Image2d::ImgNumber::ebi);
 					geta_1_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_1_sushi_list[geta_1_pieces]->SetPosition({ geta_1_pos.x + 150 * geta_1_pieces, geta_1_pos.y });
 				}
 				else if (pattern_2_flag == false && j == 1)
 				{
 					geta_2_number.push_back(Image2d::ImgNumber::ebi);
 					geta_2_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_2_sushi_list[geta_2_pieces]->SetPosition({ geta_2_pos.x + 150 * geta_2_pieces, geta_2_pos.y });
 				}
 				else if (pattern_3_flag == false && j == 2)
 				{
 					geta_3_number.push_back(Image2d::ImgNumber::ebi);
 					geta_3_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_3_sushi_list[geta_3_pieces]->SetPosition({ geta_3_pos.x + 150 * geta_3_pieces, geta_3_pos.y });
 				}
 			}
 			// 寿司下駄にタマゴを置く
@@ -572,21 +575,18 @@ void Sushi::PutSushi()
 					geta_1_number.push_back(Image2d::ImgNumber::tamago);
 					geta_1_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_1_sushi_list[geta_1_pieces]->SetPosition({ geta_1_pos.x + 150 * geta_1_pieces, geta_1_pos.y });
 				}
 				else if (pattern_2_flag == false && j == 1)
 				{
 					geta_2_number.push_back(Image2d::ImgNumber::tamago);
 					geta_2_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_2_sushi_list[geta_2_pieces]->SetPosition({ geta_2_pos.x + 150 * geta_2_pieces, geta_2_pos.y });
 				}
 				else if (pattern_3_flag == false && j == 2)
 				{
 					geta_3_number.push_back(Image2d::ImgNumber::tamago);
 					geta_3_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_3_sushi_list[geta_3_pieces]->SetPosition({ geta_3_pos.x + 150 * geta_3_pieces, geta_3_pos.y });
 				}
 			}
 			// 寿司下駄にイカを置く
@@ -599,21 +599,18 @@ void Sushi::PutSushi()
 					geta_1_number.push_back(Image2d::ImgNumber::ika);
 					geta_1_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_1_sushi_list[geta_1_pieces]->SetPosition({ geta_1_pos.x + 150 * geta_1_pieces, geta_1_pos.y });
 				}
 				else if (pattern_2_flag == false && j == 1)
 				{
 					geta_2_number.push_back(Image2d::ImgNumber::ika);
 					geta_2_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_2_sushi_list[geta_2_pieces]->SetPosition({ geta_2_pos.x + 150 * geta_2_pieces, geta_2_pos.y });
 				}
 				else if (pattern_3_flag == false && j == 2)
 				{
 					geta_3_number.push_back(Image2d::ImgNumber::ika);
 					geta_3_sushi_list.push_back(sushi_list[dragNum]);
 					sushi_list.erase(sushi_list.begin() + dragNum);
-					geta_3_sushi_list[geta_3_pieces]->SetPosition({ geta_3_pos.x + 150 * geta_3_pieces, geta_3_pos.y });
 				}
 			}
 
@@ -743,13 +740,32 @@ void Sushi::Pattern()
 
 void Sushi::Judge()
 {
-#pragma region 寿司が3つ置かれたら下駄ごとに正誤判定を行う
+#pragma region 寿司が1つ置かれたら下駄ごとに正誤判定を行う
 	// 間違えた場合
 	if (isPut_1 && (int)geta_1_sushi_list.size() >= 1)
 	{
 		isPut_1 = false;
-		int pattern_1_num = pattern_1[geta_1_pieces]->GetNumber();
-		if (geta_1_number[geta_1_pieces] != pattern_1_num)
+		for (int i = 0; i < pattern_1.size(); i++)
+		{
+			// 違った場合
+			if (pattern_1[i]->GetNumber() != geta_1_number[geta_1_pieces] || isCorrect_list_1[i] == 1)
+			{
+				isCorrect_1 = false;
+				continue;
+			}
+			// 合っていた場合
+			else
+			{
+				isCorrect_1 = true;
+				geta_1_sushi_list[geta_1_pieces]->SetPosition({ geta_1_pos.x + 150 * i, geta_1_pos.y });
+				correct_count_1++;
+				geta_1_pieces++;
+				isCorrect_list_1[i] = 1;
+				break;
+			}
+		}
+
+		if (isCorrect_1 == false)
 		{
 			geta_1_pieces = 0;
 			geta_1_number.clear();
@@ -758,19 +774,33 @@ void Sushi::Judge()
 			pattern_1_timer = 120;
 			pattern_1_flag = true;
 			combo_bonus = 1;
+			correct_count_1 = 0;
+			isCorrect_list_1 = { 0, 0, 0 };
 			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
-			return;
-		}
-		else
-		{
-			geta_1_pieces++;
 		}
 	}
 	if (isPut_2 && (int)geta_2_sushi_list.size() >= 1)
 	{
 		isPut_2 = false;
-		int pattern_2_num = pattern_2[geta_2_pieces]->GetNumber();
-		if (geta_2_number[geta_2_pieces] != pattern_2_num)
+		for (int i = 0; i < pattern_2.size(); i++)
+		{
+			if (pattern_2[i]->GetNumber() != geta_2_number[geta_2_pieces] || isCorrect_list_2[i] == 1)
+			{
+				isCorrect_2 = false;
+				continue;
+			}
+			else
+			{
+				isCorrect_2 = true;
+				geta_2_sushi_list[geta_2_pieces]->SetPosition({ geta_2_pos.x + 150 * i, geta_2_pos.y });
+				correct_count_2++;
+				geta_2_pieces++;
+				isCorrect_list_2[i] = 1;
+				break;
+			}
+		}
+
+		if (isCorrect_2 == false)
 		{
 			geta_2_pieces = 0;
 			geta_2_number.clear();
@@ -779,19 +809,33 @@ void Sushi::Judge()
 			pattern_2_timer = 120;
 			pattern_2_flag = true;
 			combo_bonus = 1;
+			correct_count_2 = 0;
+			isCorrect_list_2 = { 0, 0, 0 };
 			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
-			return;
-		}
-		else
-		{
-			geta_2_pieces++;
 		}
 	}
 	if (isPut_3 && (int)geta_3_sushi_list.size() >= 1)
 	{
 		isPut_3 = false;
-		int pattern_3_num = pattern_3[geta_3_pieces]->GetNumber();
-		if (geta_3_number[geta_3_pieces] != pattern_3_num)
+		for (int i = 0; i < pattern_3.size(); i++)
+		{
+			if (pattern_3[i]->GetNumber() != geta_3_number[geta_3_pieces] || isCorrect_list_3[i] == 1)
+			{
+				isCorrect_3 = false;
+				continue;
+			}
+			else
+			{
+				isCorrect_3 = true;
+				geta_3_sushi_list[geta_3_pieces]->SetPosition({ geta_3_pos.x + 150 * i, geta_3_pos.y });
+				correct_count_3++;
+				geta_3_pieces++;
+				isCorrect_list_3[i] = 1;
+				break;
+			}
+		}
+
+		if (isCorrect_3 == false)
 		{
 			geta_3_pieces = 0;
 			geta_3_number.clear();
@@ -800,20 +844,17 @@ void Sushi::Judge()
 			pattern_3_timer = 120;
 			pattern_3_flag = true;
 			combo_bonus = 1;
+			correct_count_3 = 0;
+			isCorrect_list_3 = { 0, 0, 0 };
 			Audio::GetInstance()->PlayWave("Resources/SE/wrong.wav", 0, 0.1f);
-			return;
-		}
-		else
-		{
-			geta_3_pieces++;
 		}
 	}
 
-	// 合ってた場合
+	// 3つ合ってた場合
 	if (geta_1_pieces >= 3)
 	{
 		geta_1_pieces = 0;
-		if (geta_1_number[0] == pattern_1[0]->GetNumber() && geta_1_number[1] == pattern_1[1]->GetNumber() && geta_1_number[2] == pattern_1[2]->GetNumber())
+		if (correct_count_1 >= 3)
 		{
 			geta_1_number.clear();
 			pattern_1.clear();
@@ -823,6 +864,7 @@ void Sushi::Judge()
 			score += (500 + time_bonus) * combo_bonus;
 			combo_bonus += combo_bonus;
 			time_bonus = 0;
+			isCorrect_list_1 = { 0, 0, 0 };
 			Audio::GetInstance()->PlayWave("Resources/SE/correct.wav", 0, 0.1f);
 			return;
 		}
@@ -830,7 +872,7 @@ void Sushi::Judge()
 	if (geta_2_pieces >= 3)
 	{
 		geta_2_pieces = 0;
-		if (geta_2_number[0] == pattern_2[0]->GetNumber() && geta_2_number[1] == pattern_2[1]->GetNumber() && geta_2_number[2] == pattern_2[2]->GetNumber())
+		if (correct_count_2 >= 3)
 		{
 			geta_2_number.clear();
 			pattern_2.clear();
@@ -840,6 +882,7 @@ void Sushi::Judge()
 			score += (500 + time_bonus) * combo_bonus;
 			combo_bonus += combo_bonus;
 			time_bonus = 0;
+			isCorrect_list_2 = { 0, 0, 0 };
 			Audio::GetInstance()->PlayWave("Resources/SE/correct.wav", 0, 0.1f);
 			return;
 		}
@@ -847,7 +890,7 @@ void Sushi::Judge()
 	if (geta_3_pieces >= 3)
 	{
 		geta_3_pieces = 0;
-		if (geta_3_number[0] == pattern_3[0]->GetNumber() && geta_3_number[1] == pattern_3[1]->GetNumber() && geta_3_number[2] == pattern_3[2]->GetNumber())
+		if (correct_count_3 >= 3)
 		{
 			geta_3_number.clear();
 			pattern_3.clear();
@@ -857,6 +900,7 @@ void Sushi::Judge()
 			score += (500 + time_bonus) * combo_bonus;
 			combo_bonus += combo_bonus;
 			time_bonus = 0;
+			isCorrect_list_3 = { 0, 0, 0 };
 			Audio::GetInstance()->PlayWave("Resources/SE/correct.wav", 0, 0.1f);
 			return;
 		}

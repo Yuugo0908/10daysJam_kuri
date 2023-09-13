@@ -139,6 +139,18 @@ private: // メンバ変数
 	// スコアボーナス
 	int combo_bonus = 1;
 	int time_bonus = 0;
+	// 正誤判定用
+	bool isCorrect_1 = false;
+	bool isCorrect_2 = false;
+	bool isCorrect_3 = false;
+	// 寿司が合っている数
+	int correct_count_1 = 0;
+	int correct_count_2 = 0;
+	int correct_count_3 = 0;
+	// 前に置いた寿司のフラグ
+	std::vector<int> isCorrect_list_1 = {0, 0, 0};
+	std::vector<int> isCorrect_list_2 = {0, 0, 0};
+	std::vector<int> isCorrect_list_3 = {0, 0, 0};
 
 	// シャリ
 	std::vector<Image2d*> shari_list;

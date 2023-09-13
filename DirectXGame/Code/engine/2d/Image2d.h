@@ -33,7 +33,7 @@ public: // サブクラス
 		door_right, door_left,
 		people, hukidasi,
 		wait_bar, wait_gauge,time_bar, time_gauge,
-		score_back, 
+		score_back, space_key,
 
 		kome_oke, watar, 
 		shari, sushi_geta,

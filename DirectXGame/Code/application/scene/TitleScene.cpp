@@ -11,6 +11,8 @@ void TitleScene::Initialize()
 	title->SetSize({ 1920.0f,1080.0f });
 	tutorial = Image2d::Create(Image2d::ImgNumber::tutorial, { 0.0f, 0.0f }, { 1.0f, 1.0f, 1.0f, 1.0f });
 	tutorial->SetSize({ 1920.0f,1080.0f });
+	space = Image2d::Create(Image2d::ImgNumber::space_key, { 690.0f, 950.0f });
+	space->SetSize(space->GetDataSize());
 
 	// ƒ‰ƒCƒg‚Ì¶¬
 	light = Light::Create();
@@ -66,11 +68,15 @@ void TitleScene::Draw()
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
 
 	title->Draw();
-
 	if (isTutorial && isTutorial_first)
 	{
 		tutorial->Draw();
 	}
+	if (isTutorial)
+	{
+		space->SetPosition({ 50.0f, 20.0f });
+	}
+	space->Draw();
 
 	// ‰æ‘œ•`‰æŒãˆ—
 	Image2d::PostDraw();

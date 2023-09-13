@@ -35,6 +35,7 @@ private: // ƒƒ“ƒo•Ï”
 
 	// ‰æ‘œ
 	Image2d* result = nullptr;
+	Image2d* space = nullptr;
 	bool titleFlag = false;
 	bool seFlag = true;
 };

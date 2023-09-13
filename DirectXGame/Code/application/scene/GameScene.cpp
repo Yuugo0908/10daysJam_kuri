@@ -80,7 +80,7 @@ void GameScene::Update()
 #pragma endregion
 
 	// TODO タイムアップでリザルト画面に移行
-	if (clear_timer <= 0 || keyboard->TriggerKey(DIK_SPACE))
+	if (clear_timer <= 0)
 	{
 		isClear = true;
 	}

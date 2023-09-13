@@ -6,6 +6,8 @@ void GameClearScene::Initialize()
 	// ƒQ[ƒ€ƒNƒŠƒA‰æ‘œ¶¬
 	result = Image2d::Create(Image2d::ImgNumber::result, { 0.0f,0.0f });
 	result->SetSize({ 1920.0f,1080.0f });
+	space = Image2d::Create(Image2d::ImgNumber::space_key, { 690.0f, 950.0f });
+	space->SetSize(space->GetDataSize());
 
 	Sushi::GetInstance()->Finalize();
 }
@@ -80,6 +82,7 @@ void GameClearScene::Draw()
 
 	// ‘OŒi‰æ‘œ‚Ì•`‰æ
 	result->Draw();
+	space->Draw();
 
 	// ƒtƒF[ƒh‚Ì•`‰æ
 	FadeScene::GetInstance()->Draw();

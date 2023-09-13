@@ -40,6 +40,7 @@ private: // ƒƒ“ƒo•Ï”
 	// ‰æ‘œ
 	Image2d* title = nullptr;
 	Image2d* tutorial = nullptr;
+	Image2d* space = nullptr;
 
 	float alpha = 0.0f;
 	bool isChange = false;

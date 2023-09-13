@@ -47,6 +47,31 @@ void MyGame::Initialize()
 	{
 		assert(0);
 	}
+	// UI‰æ‘œ“Ç‚İ‚İ
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::wait_bar, "wait_bar"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::wait_gauge, "wait_gauge"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::time_bar, "time_bar"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::time_gauge, "time_gauge"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::score_back, "score_back"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::space_key, "space_key"))
+	{
+		assert(0);
+	}
 	// õi‰æ‘œ‚Ì“Ç‚İ‚İ
 	if (!Image2d::LoadTexture(Image2d::ImgNumber::kome_oke, "kome_oke"))
 	{
@@ -97,26 +122,6 @@ void MyGame::Initialize()
 		assert(0);
 	}
 	if (!Image2d::LoadTexture(Image2d::ImgNumber::ika_neta, "ika_neta"))
-	{
-		assert(0);
-	}
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::wait_bar, "wait_bar"))
-	{
-		assert(0);
-	}
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::wait_gauge, "wait_gauge"))
-	{
-		assert(0);
-	}
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::time_bar, "time_bar"))
-	{
-		assert(0);
-	}
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::time_gauge, "time_gauge"))
-	{
-		assert(0);
-	}
-	if (!Image2d::LoadTexture(Image2d::ImgNumber::score_back, "score_back"))
 	{
 		assert(0);
 	}
