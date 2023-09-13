@@ -56,6 +56,20 @@ void Sushi::Initialize()
 	sushi_getas.push_back(sushi_geta_2);
 	sushi_getas.push_back(sushi_geta_3);
 
+	// タイマー表示
+	wait_bar_1 = Image2d::Create(Image2d::ImgNumber::wait_bar, { 755.0f,50.0f });
+	wait_bar_1->SetSize(wait_bar_1->GetDataSize());
+	wait_bar_2 = Image2d::Create(Image2d::ImgNumber::wait_bar, { 175.0f,50.0f });
+	wait_bar_2->SetSize(wait_bar_2->GetDataSize());
+	wait_bar_3 = Image2d::Create(Image2d::ImgNumber::wait_bar, { 1335.0f,50.0f });
+	wait_bar_3->SetSize(wait_bar_3->GetDataSize());
+	wait_gauge_1 = Image2d::Create(Image2d::ImgNumber::wait_gauge, { 830.0f,52.0f });
+	wait_gauge_1->SetSize(wait_gauge_1->GetDataSize());
+	wait_gauge_2 = Image2d::Create(Image2d::ImgNumber::wait_gauge, { 250.0f,52.0f });
+	wait_gauge_2->SetSize(wait_gauge_2->GetDataSize());
+	wait_gauge_3 = Image2d::Create(Image2d::ImgNumber::wait_gauge, { 1405.0f,52.0f });
+	wait_gauge_3->SetSize(wait_gauge_3->GetDataSize());
+
 	// スコアリセット
 	score = 0;
 }
@@ -125,6 +139,25 @@ void Sushi::Draw()
 	for (int i = 0; i < pattern_3.size(); i++)
 	{
 		pattern_3[i]->Draw();
+	}
+
+	if (pattern_1_flag == false)
+	{
+		wait_bar_1->Draw();
+		wait_gauge_1->SetSize({ (float)wait_timer_1 / 4, 51.0f });
+		wait_gauge_1->Draw();
+	}
+	if (pattern_2_flag == false)
+	{
+		wait_bar_2->Draw();
+		wait_gauge_2->SetSize({ (float)wait_timer_2 / 4, 51.0f });
+		wait_gauge_2->Draw();
+	}
+	if (pattern_3_flag == false)
+	{
+		wait_bar_3->Draw();
+		wait_gauge_3->SetSize({ (float)wait_timer_3 / 4, 51.0f });
+		wait_gauge_3->Draw();
 	}
 
 	if ((int)sushi_list.size() != 0 && isDragNow == true)
@@ -783,7 +816,7 @@ void Sushi::Judge()
 			pattern_1_flag = true;
 			time_bonus = wait_timer_1;
 			score += (500.0f + time_bonus) * combo_bonus;
-			combo_bonus += 0.1f;
+			combo_bonus += combo_bonus + 0.1f;
 			time_bonus = 0;
 			Audio::GetInstance()->PlayWave("Resources/SE/correct.wav", 0, 0.1f);
 			return;
@@ -800,7 +833,7 @@ void Sushi::Judge()
 			pattern_2_flag = true;
 			time_bonus = wait_timer_2;
 			score += (500.0f + time_bonus) * combo_bonus;
-			combo_bonus += 0.1f;
+			combo_bonus += combo_bonus + 0.1f;
 			time_bonus = 0;
 			Audio::GetInstance()->PlayWave("Resources/SE/correct.wav", 0, 0.1f);
 			return;
@@ -817,7 +850,7 @@ void Sushi::Judge()
 			pattern_3_flag = true;
 			time_bonus = wait_timer_3;
 			score += (500.0f + time_bonus) * combo_bonus;
-			combo_bonus += 0.1f;
+			combo_bonus += combo_bonus + 0.1f;
 			time_bonus = 0;
 			Audio::GetInstance()->PlayWave("Resources/SE/correct.wav", 0, 0.1f);
 			return;

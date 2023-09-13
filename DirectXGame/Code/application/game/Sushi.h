@@ -125,6 +125,13 @@ private: // メンバ変数
 	int pattern_1_timer = 30;
 	int pattern_2_timer = Random::GetRanNum(300, 600);
 	int pattern_3_timer = Random::GetRanNum(900, 1200);
+	// 注文が変わるまでのタイマー表示
+	Image2d* wait_bar_1 = nullptr;
+	Image2d* wait_bar_2 = nullptr;
+	Image2d* wait_bar_3 = nullptr;
+	Image2d* wait_gauge_1 = nullptr;
+	Image2d* wait_gauge_2 = nullptr;
+	Image2d* wait_gauge_3 = nullptr;
 	// 注文が変わるまでのタイマー
 	int wait_timer_1 = 1200;
 	int wait_timer_2 = 1200;

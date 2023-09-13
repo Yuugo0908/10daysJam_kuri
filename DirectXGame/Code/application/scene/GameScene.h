@@ -59,6 +59,8 @@ private: // メンバ変数
 	Image2d* mouseImg = nullptr;
 	Image2d* mouseLeftImg = nullptr;
 	Image2d* mouseRightImg = nullptr;
+	Image2d* time_bar = nullptr;
+	Image2d* time_gauge = nullptr;
 
 	bool isClear = false;
 	bool isGameOver = false;

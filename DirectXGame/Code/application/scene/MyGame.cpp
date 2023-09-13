@@ -113,6 +113,22 @@ void MyGame::Initialize()
 	{
 		assert(0);
 	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::wait_bar, "wait_bar"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::wait_gauge, "wait_gauge"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::time_bar, "time_bar"))
+	{
+		assert(0);
+	}
+	if (!Image2d::LoadTexture(Image2d::ImgNumber::time_gauge, "time_gauge"))
+	{
+		assert(0);
+	}
 
 	// BGM‚ÌÄ¶
 	Audio::GetInstance()->PlayWave("Resources/BGM/bgm.wav", 255, 0.03f);

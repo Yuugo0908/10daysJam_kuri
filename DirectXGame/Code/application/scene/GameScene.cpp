@@ -40,6 +40,12 @@ void GameScene::Initialize()
 	mouseRightImg->SetPosition({ 1630.0f, 770.0f });
 	mouseRightImg->SetSize(mouseRightImg->GetDataSize() / 2);
 
+	time_bar = Image2d::Create(Image2d::ImgNumber::time_bar, { 10.0f, 10.0f });
+	time_bar->SetSize({ 64.0f, 600.0f });
+	time_gauge = Image2d::Create(Image2d::ImgNumber::time_gauge, { 12.0f, 610.0f });
+	time_gauge->SetSize({ 60.0f, (float)clear_timer / 9.0f });
+	time_gauge->SetIsFlipY(true);
+
 	sushi->Initialize();
 
 	// ライトの生成
@@ -94,7 +100,7 @@ void GameScene::Update()
 void GameScene::Draw()
 {
 	// ImGuiの描画
-	SetImgui();
+	//SetImgui();
 
 #pragma region 背景画像描画
 	// 背景画像描画前処理
@@ -138,6 +144,11 @@ void GameScene::Draw()
 #pragma region 前景画像描画
 	// 前景画像描画前処理
 	Image2d::PreDraw(DirectXCommon::GetInstance()->GetCommandList());
+
+	time_bar->Draw();
+
+	time_gauge->SetSize({ 60.0f, (float)clear_timer / 9.0f });
+	time_gauge->Draw();
 
 	sushi->Draw();
 

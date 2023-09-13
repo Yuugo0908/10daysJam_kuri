@@ -32,7 +32,7 @@ public: // サブクラス
 		title, tutorial, back_1, back_2, result,
 		mouse, mouseLeft, mouseRight,
 		door_right, door_left,
-		people, hukidasi,
+		people, hukidasi,wait_bar, wait_gauge,time_bar, time_gauge,
 
 		kome_oke, watar, 
 		shari, sushi_geta,
